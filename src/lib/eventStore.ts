@@ -39,8 +39,8 @@ export const defaultEvents: EventItem[] = [
   { id: "ev1", img: event1, title: "1ST \"DDMOTORS NIGHT\"", desc: "Il raduno estivo che ha illuminato le notti con oltre 200 auto e 500 appassionati.", date: "15 Luglio 2025", status: "Prossimo", tag: "DDMOTORS NIGHT", location: "Milano, Piazzale Lotto" },
   { id: "ev2", img: event2, title: "1ST \"CARS & BIKE MEETING\"", desc: "Una serata dedicata alle leggende della strada e del motorsport italiano.", date: "22 Agosto 2025", status: "Prossimo", tag: "DDMOTORS RADUNI", location: "Roma, EUR" },
   { id: "ev3", img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025", status: "Prossimo", tag: "DDMOTORS RADUNI", location: "Torino, Lingotto" },
-  { id: "ev4", img: gallery1, title: "1ST \"CARS & BIKES MEETING\"", desc: "Auto con underglow e luci LED in un'atmosfera unica tra fumo e musica.", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Bologna, Fiera" },
-  { id: "ev5", img: gallery2, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata adrenalinica con esibizioni di drift e burnout controllati.", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Napoli, Mostra d'Oltremare" },
+  { id: "ev4", img: gallery1, title: "1ST \"CARS & BIKES MEETING\"", desc: "Imponente raduno di ogni genere di auto, una serata incredibile", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Bologna, Fiera" },
+  { id: "ev5", img: gallery2, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata evento: un connubio tra auto e raffinatezza", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Napoli, Mostra d'Oltremare" },
 ];
 
 const defaultPhotos: PhotoItem[] = [
