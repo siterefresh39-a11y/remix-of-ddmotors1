@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 const navItems = [
   { label: "Home", path: "/" },
   { label: "Chi siamo", path: "/chi-siamo" },
-  { label: "Raduni", path: "/raduni" },
+  { label: "Eventi", path: "/raduni" },
   { label: "Galleria", path: "/galleria" },
   { label: "Calendario", path: "/calendario" },
   { label: "Contatti", path: "/contatti" },
