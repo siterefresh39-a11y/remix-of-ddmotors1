@@ -1,0 +1,42 @@
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AdminProvider } from "./contexts/AdminContext";
+import Layout from "./components/Layout";
+import Index from "./pages/Index";
+import About from "./pages/About";
+import Events from "./pages/Events";
+import Gallery from "./pages/Gallery";
+import CalendarPage from "./pages/CalendarPage";
+import Contact from "./pages/Contact";
+import NotFound from "./pages/NotFound";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <AdminProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Index />} />
+              <Route path="/chi-siamo" element={<About />} />
+              <Route path="/raduni" element={<Events />} />
+              <Route path="/galleria" element={<Gallery />} />
+              <Route path="/calendario" element={<CalendarPage />} />
+              <Route path="/contatti" element={<Contact />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AdminProvider>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
