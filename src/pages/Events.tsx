@@ -40,7 +40,7 @@ const Events = () => {
         </div>
 
         {/* Events list */}
-        <div className="space-y-8 md:space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {sorted.map((event, i) => (
             <motion.div
               key={event.id}
@@ -48,18 +48,18 @@ const Events = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="event-card group h-[50vh] md:h-[60vh] relative"
+              className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full"
             >
               <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               <div className="event-card-overlay group-hover:opacity-90" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 z-10">
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
                 <div className="flex items-center gap-3 mb-3 flex-wrap">
                   <span className={`font-display text-xs tracking-widest uppercase px-3 py-1 border ${event.status === "Prossimo" ? "border-foreground/50 text-foreground" : "border-foreground/20 text-foreground/50"}`}>{event.status}</span>
                   <span className="font-display text-xs tracking-widest uppercase px-3 py-1 border border-foreground/30 text-foreground/70">{event.tag}</span>
                   <span className="font-display text-xs tracking-widest text-foreground/50">{event.date}</span>
                 </div>
-                <h2 className="font-display text-3xl md:text-5xl tracking-wider text-foreground mb-3">{event.title}</h2>
-                <p className="text-foreground/70 text-sm md:text-base font-body leading-relaxed max-w-xl">{event.desc}</p>
+                <h2 className="font-display text-2xl md:text-4xl tracking-wider text-foreground mb-3">{event.title}</h2>
+                <p className="text-foreground/70 text-sm font-body leading-relaxed">{event.desc}</p>
               </div>
             </motion.div>
           ))}

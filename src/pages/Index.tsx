@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroImg from "@/assets/hero-headlights.jpg";
-import event1 from "@/assets/event-1.jpg";
+import locandinaNight from "@/assets/locandina-ddmotors-night.jpeg";
 import event2 from "@/assets/event-2.jpg";
 import event3 from "@/assets/event-3.jpg";
 
@@ -22,7 +22,7 @@ const Index = () => {
   const textVisible = heroPhase === "flash" || heroPhase === "steady";
 
   const events = [
-  { img: event1, title: "1ST \"DDMOTORS NIGHT\"", desc: "Raduno estivo notturno con le migliori auto sportive della community.", date: "15 Luglio 2025" },
+  { img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Raduno estivo notturno con le migliori auto sportive della community.", date: "15 Luglio 2025" },
   { img: event2, title: "1ST \"CARS & BIKE MEETING\"", desc: "Una serata dedicata alle leggende della strada e del motorsport.", date: "22 Agosto 2025" },
   { img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" }];
 
