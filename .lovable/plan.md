@@ -1,22 +1,39 @@
 
 
-## Plan: Use uploaded flyer as cover for "1ST DDMOTORS NIGHT" event
+## Plan: Redesign Gallery as event covers with photo sub-gallery and download
 
-### What changes
+### Current state
+- Gallery page shows a flat grid of individual photos with a filter dropdown and lightbox
+- Events page shows event cards in portrait `aspect-[3/4]` format with `max-w-lg`
 
-1. **Copy the uploaded image** to `src/assets/locandina-ddmotors-night.jpeg`
+### New design
 
-2. **`src/lib/eventStore.ts`** — Import the new image and use it as `img` for event `ev5` (1ST "DDMOTORS NIGHT"). Also update the gallery photo `ph4` to use the same image.
+**1. Replace flat photo grid with event cover cards (same format as Events page)**
 
-3. **`src/pages/Index.tsx`** — Import the new image and use it for the first event card (1ST "DDMOTORS NIGHT") instead of `event1`.
+The gallery page will show one card per event using the same portrait `aspect-[3/4] max-w-lg` card style from Events.tsx. Each card shows the event cover image, title, and date. No more flat photo grid on the main gallery view.
 
-4. **Adapt card layout for vertical/portrait images** — Since all covers will be portrait (like this flyer), adjust:
-   - **Events.tsx**: Change the event cards from landscape `h-[50vh]/h-[60vh]` to a portrait aspect ratio (`aspect-[3/4]`) with `object-contain` or constrained sizing so images don't get cropped/pixelated.
-   - **Index.tsx**: The homepage event cards already use `aspect-[3/4]` which suits portrait images — no change needed there.
-   - Use `object-cover` with `object-top` or switch to `object-contain` with a dark background to avoid grainy stretching on the events page.
+**2. Click on a cover → open a photo sub-gallery modal**
+
+Clicking an event cover opens a full-screen overlay/modal showing all photos belonging to that event in a grid. Users can browse the photos within that event.
+
+**3. Click on a photo in the sub-gallery → lightbox with download button**
+
+Clicking a single photo opens the existing lightbox (prev/next navigation) but with an added **download button** (using `<a href={src} download>` or programmatic blob download for cross-origin).
+
+**4. Remove the filter dropdown** — no longer needed since each event is its own entry point.
+
+### Files to modify
+
+1. **`src/pages/Gallery.tsx`** — Complete rewrite:
+   - Show event covers in a grid (`grid-cols-1 md:grid-cols-2`, portrait cards matching Events.tsx style)
+   - State: `selectedEventId` — when set, show a modal/overlay with that event's photos in a grid
+   - Lightbox: keep existing prev/next logic, add a download button (Download icon from lucide)
+   - Remove the filter dropdown
+
+2. **`src/lib/eventStore.ts`** — No changes needed (photos already have `eventId` linking them to events)
 
 ### Technical details
-
-- The event cards on `/raduni` are currently full-width banners (`h-[50vh]`). A portrait image stretched to fill a wide banner will look terrible. Switch to a centered card layout with max-width constraint and portrait aspect ratio, or use `object-contain` with dark bg so the image stays sharp.
-- Preferred approach: make each event card on `/raduni` a contained portrait card (e.g., `max-w-2xl mx-auto aspect-[3/4]`) instead of full-width, matching the portrait flyer format.
+- Download button: `<a>` tag with `download` attribute pointing to photo `src`
+- Sub-gallery modal: full-screen overlay similar to lightbox but showing a grid of thumbnails
+- Lightbox download icon: lucide `Download` icon positioned next to the close `X` button
 
