@@ -21,8 +21,8 @@ const Events = () => {
         <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="section-title">
           EVENTI
         </motion.h1>
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="section-subtitle mb-12 md:mb-20">
-          Ogni evento è un'esperienza. Scopri i raduni che hanno segnato la community e quelli che stanno per arrivare.
+        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="section-subtitle mb-12 md:mb-20">Ogni evento è un'esperienza. Scopri gli eventi che hanno segnato la community e quelli che stanno per arrivare.
+
         </motion.p>
 
         {/* Tag filter dropdown */}
@@ -30,26 +30,26 @@ const Events = () => {
           <select
             value={filterTag}
             onChange={(e) => setFilterTag(e.target.value)}
-            className="bg-background border border-foreground/20 text-foreground px-5 py-3 text-sm font-body focus:outline-none focus:border-foreground/50 min-w-[220px]"
-          >
+            className="bg-background border border-foreground/20 text-foreground px-5 py-3 text-sm font-body focus:outline-none focus:border-foreground/50 min-w-[220px]">
+
             <option value="all">Tutti gli eventi</option>
-            {EVENT_TAGS.map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
+            {EVENT_TAGS.map((t) =>
+            <option key={t} value={t}>{t}</option>
+            )}
           </select>
         </div>
 
         {/* Events list */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          {sorted.map((event, i) => (
-            <motion.div
-              key={event.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full"
-            >
+          {sorted.map((event, i) =>
+          <motion.div
+            key={event.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full">
+
               <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               <div className="event-card-overlay group-hover:opacity-90" />
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
@@ -62,11 +62,11 @@ const Events = () => {
                 <p className="text-foreground/70 text-sm font-body leading-relaxed">{event.desc}</p>
               </div>
             </motion.div>
-          ))}
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default Events;
