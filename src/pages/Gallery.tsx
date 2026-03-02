@@ -1,21 +1,32 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, Download, ArrowLeft } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Download, ArrowLeft, ExternalLink } from "lucide-react";
 import { PhotoItem, EventItem, loadEvents, loadPhotos } from "@/lib/eventStore";
 
 const Gallery = () => {
   const [events] = useState<EventItem[]>(loadEvents);
   const [photos] = useState<PhotoItem[]>(loadPhotos);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [viewerIndex, setViewerIndex] = useState<number>(0);
 
   const selectedEvent = events.find((e) => e.id === selectedEventId) ?? null;
   const eventPhotos = selectedEventId ? photos.filter((p) => p.eventId === selectedEventId) : [];
+  // Total slides = photos + 1 final CTA slide
+  const totalSlides = eventPhotos.length + 1;
+  const isLastSlide = viewerIndex === eventPhotos.length;
 
-  const openLightbox = (i: number) => setLightboxIndex(i);
-  const closeLightbox = () => setLightboxIndex(null);
-  const prev = () => setLightboxIndex((i) => (i !== null ? (i - 1 + eventPhotos.length) % eventPhotos.length : null));
-  const next = () => setLightboxIndex((i) => (i !== null ? (i + 1) % eventPhotos.length : null));
+  const openViewer = (eventId: string) => {
+    setSelectedEventId(eventId);
+    setViewerIndex(0);
+  };
+
+  const closeViewer = () => {
+    setSelectedEventId(null);
+    setViewerIndex(0);
+  };
+
+  const prev = () => setViewerIndex((i) => Math.max(0, i - 1));
+  const next = () => setViewerIndex((i) => Math.min(totalSlides - 1, i + 1));
 
   const handleDownload = useCallback((src: string, alt: string) => {
     const a = document.createElement("a");
@@ -46,7 +57,7 @@ const Gallery = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full cursor-pointer"
-                  onClick={() => setSelectedEventId(event.id)}
+                  onClick={() => openViewer(event.id)}
                 >
                   <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                   <div className="event-card-overlay group-hover:opacity-90" />
@@ -62,83 +73,117 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Sub-gallery overlay */}
+      {/* Fullscreen swipeable photo viewer */}
       <AnimatePresence>
-        {selectedEvent && lightboxIndex === null && (
+        {selectedEvent && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background overflow-y-auto"
+            className="fixed inset-0 z-50 bg-background flex flex-col"
           >
-            <div className="max-w-7xl mx-auto section-padding py-8">
+            {/* Top bar */}
+            <div className="flex items-center justify-between px-4 md:px-8 py-4 shrink-0">
               <button
-                onClick={() => setSelectedEventId(null)}
-                className="flex items-center gap-2 text-foreground/60 hover:text-foreground mb-8 font-body text-sm transition-colors"
+                onClick={closeViewer}
+                className="flex items-center gap-2 text-foreground/60 hover:text-foreground font-body text-sm transition-colors"
               >
                 <ArrowLeft size={18} /> Torna alla galleria
               </button>
-
-              <h2 className="font-display text-3xl md:text-5xl tracking-wider text-foreground mb-2">{selectedEvent.title}</h2>
-              <p className="text-foreground/50 text-sm font-body mb-10">{selectedEvent.date}</p>
-
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                {eventPhotos.map((photo, i) => (
-                  <motion.div
-                    key={photo.id}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                    className="cursor-pointer overflow-hidden aspect-square relative group"
-                    onClick={() => openLightbox(i)}
+              <div className="flex items-center gap-3">
+                {!isLastSlide && eventPhotos[viewerIndex] && (
+                  <button
+                    onClick={() => handleDownload(eventPhotos[viewerIndex].src, eventPhotos[viewerIndex].alt)}
+                    className="text-foreground/70 hover:text-foreground transition-colors"
+                    title="Scarica foto"
                   >
-                    <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" />
-                    <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors" />
-                  </motion.div>
-                ))}
+                    <Download size={24} />
+                  </button>
+                )}
+                <button
+                  onClick={closeViewer}
+                  className="text-foreground/70 hover:text-foreground transition-colors"
+                >
+                  <X size={28} />
+                </button>
               </div>
+            </div>
 
-              {eventPhotos.length === 0 && (
-                <p className="text-foreground/40 font-body text-center py-20">Nessuna foto disponibile per questo evento.</p>
+            {/* Counter */}
+            <div className="text-center text-foreground/40 text-xs font-body tracking-widest mb-2">
+              {viewerIndex + 1} / {totalSlides}
+            </div>
+
+            {/* Photo / CTA area */}
+            <div className="flex-1 relative flex items-center justify-center overflow-hidden px-4">
+              {/* Navigation arrows */}
+              {viewerIndex > 0 && (
+                <button
+                  onClick={prev}
+                  className="absolute left-2 md:left-8 text-foreground/50 hover:text-foreground z-50 transition-colors"
+                >
+                  <ChevronLeft size={40} />
+                </button>
               )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {viewerIndex < totalSlides - 1 && (
+                <button
+                  onClick={next}
+                  className="absolute right-2 md:right-8 text-foreground/50 hover:text-foreground z-50 transition-colors"
+                >
+                  <ChevronRight size={40} />
+                </button>
+              )}
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && eventPhotos[lightboxIndex] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-background/95 flex items-center justify-center"
-            onClick={closeLightbox}
-          >
-            <div className="absolute top-5 right-5 flex items-center gap-3 z-50">
-              <button
-                onClick={(e) => { e.stopPropagation(); handleDownload(eventPhotos[lightboxIndex].src, eventPhotos[lightboxIndex].alt); }}
-                className="text-foreground/70 hover:text-foreground transition-colors"
-                title="Scarica foto"
-              >
-                <Download size={28} />
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
-                className="text-foreground/70 hover:text-foreground transition-colors"
-              >
-                <X size={32} />
-              </button>
+              <AnimatePresence mode="wait">
+                {!isLastSlide && eventPhotos[viewerIndex] ? (
+                  <motion.img
+                    key={eventPhotos[viewerIndex].id}
+                    src={eventPhotos[viewerIndex].src}
+                    alt={eventPhotos[viewerIndex].alt}
+                    initial={{ opacity: 0, x: 60 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -60 }}
+                    transition={{ duration: 0.3 }}
+                    className="max-w-[85vw] max-h-[75vh] object-contain"
+                  />
+                ) : (
+                  <motion.div
+                    key="cta-slide"
+                    initial={{ opacity: 0, x: 60 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -60 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col items-center justify-center text-center px-6 max-w-md"
+                  >
+                    <h3 className="font-display text-2xl md:text-3xl tracking-wider text-foreground mb-4">
+                      Vuoi vedere tutte le foto?
+                    </h3>
+                    <p className="text-foreground/60 font-body text-sm md:text-base mb-8">
+                      Per vedere tutte le foto scattate a <span className="text-foreground font-semibold">{selectedEvent.title}</span>, clicca sul link qui sotto.
+                    </p>
+                    {selectedEvent.allPhotosLink ? (
+                      <a
+                        href={selectedEvent.allPhotosLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display tracking-wider text-sm hover:bg-primary/90 transition-colors rounded"
+                      >
+                        Vedi tutte le foto <ExternalLink size={16} />
+                      </a>
+                    ) : (
+                      <p className="text-foreground/40 font-body text-sm italic">Link in arrivo...</p>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-            <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 md:left-8 text-foreground/50 hover:text-foreground z-50"><ChevronLeft size={40} /></button>
-            <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 md:right-8 text-foreground/50 hover:text-foreground z-50"><ChevronRight size={40} /></button>
-            <img
-              src={eventPhotos[lightboxIndex].src}
-              alt={eventPhotos[lightboxIndex].alt}
-              className="max-w-[90vw] max-h-[85vh] object-contain"
-              onClick={(e) => e.stopPropagation()}
-            />
+
+            {/* Photo description */}
+            {!isLastSlide && eventPhotos[viewerIndex] && (
+              <div className="text-center py-4 px-4">
+                <p className="text-foreground/50 font-body text-sm">{eventPhotos[viewerIndex].alt}</p>
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
