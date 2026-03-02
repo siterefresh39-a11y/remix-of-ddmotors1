@@ -26,7 +26,6 @@ const Index = () => {
   { img: event2, title: "1ST \"CARS & BIKE MEETING\"", desc: "Una serata dedicata alle leggende della strada e del motorsport.", date: "22 Agosto 2025" },
   { img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" }];
 
-
   return (
     <>
       {/* HERO */}
@@ -103,7 +102,7 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* CHI SIAMO preview */}
+      {/* EVENTI RECENTI */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto">
           <motion.h2
@@ -113,42 +112,7 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             className="section-title">
 
-            CHI SIAMO
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="section-subtitle mb-10 md:mb-16">
-
-            DDMotors è una community che organizza raduni, serate ed eventi dedicati al mondo dei motori.
-            Non solo auto, ma persone, passione e atmosfera.
-          </motion.p>
-          <motion.img
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            src={event3}
-            alt="Raduno DDMotors"
-            className="w-full h-[50vh] md:h-[70vh] object-cover rounded-sm"
-            loading="lazy" />
-
-        </div>
-      </section>
-
-      {/* HIGHLIGHT EVENTI */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="section-title">
-
-            EVENTI
+            EVENTI RECENTI
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {events.map((event, i) =>
@@ -189,6 +153,41 @@ const Index = () => {
               Scopri tutti i raduni
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* CHI SIAMO */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="section-title">
+
+            CHI SIAMO
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="section-subtitle mb-10 md:mb-16">
+
+            DDMotors è una community che organizza raduni, serate ed eventi dedicati al mondo dei motori.
+            Non solo auto, ma persone, passione e atmosfera.
+          </motion.p>
+          <motion.img
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            src={event3}
+            alt="Raduno DDMotors"
+            className="w-full h-[50vh] md:h-[70vh] object-cover rounded-sm"
+            loading="lazy" />
+
         </div>
       </section>
     </>);
