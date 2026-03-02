@@ -22,7 +22,7 @@ const Index = () => {
   const textVisible = heroPhase === "flash" || heroPhase === "steady";
 
   const events = [
-  { img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Raduno estivo notturno con le migliori auto sportive della community.", date: "15 Luglio 2025" },
+  { img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Raduno evento serale e lounge raffinata nel hinterland Milanese.", date: "15 Luglio 2025" },
   { img: event2, title: "1ST \"CARS & BIKE MEETING\"", desc: "Una serata dedicata alle leggende della strada e del motorsport.", date: "22 Agosto 2025" },
   { img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" }];
 
