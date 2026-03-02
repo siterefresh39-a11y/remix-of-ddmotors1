@@ -148,9 +148,9 @@ const Index = () => {
 
             <Link
               to="/raduni"
-              className="inline-block font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300">
+              className="inline-block font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300">SCOPRI TUTTI GLI EVENTI
 
-              Scopri tutti i raduni
+
             </Link>
           </motion.div>
         </div>
