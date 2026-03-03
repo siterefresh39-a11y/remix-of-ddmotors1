@@ -5,6 +5,12 @@ import ddnight2 from "@/assets/ddnight-2.jpg";
 import ddnight3 from "@/assets/ddnight-3.jpg";
 import ddnight4 from "@/assets/ddnight-4.jpg";
 import ddnight5 from "@/assets/ddnight-5.jpg";
+import cbm1 from "@/assets/cbm-1.jpg";
+import cbm2 from "@/assets/cbm-2.jpg";
+import cbm3 from "@/assets/cbm-3.jpg";
+import cbm4 from "@/assets/cbm-4.jpg";
+import cbm5 from "@/assets/cbm-5.jpg";
+import cbm6 from "@/assets/cbm-6.jpg";
 
 // ── Tag system ──
 export const EVENT_TAGS = [
@@ -47,8 +53,12 @@ const defaultPhotos: PhotoItem[] = [
   { id: "ph6", src: ddnight2, alt: "Mercedes AMG al raduno notturno", eventId: "ev5", date: "20th February 2026" },
   { id: "ph7", src: ddnight3, alt: "Lancia Delta rossa al raduno", eventId: "ev5", date: "20th February 2026" },
   { id: "ph8", src: ddnight4, alt: "Porsche viola al raduno notturno", eventId: "ev5", date: "20th February 2026" },
-  { id: "ph9", src: ddnight5, alt: "Dettaglio JDM auto rossa al raduno", eventId: "ev5", date: "20th February 2026" },
-  { id: "ph2", src: carsBikesCover, alt: "Locandina Cars & Bikes Meeting", eventId: "ev4", date: "DECEMBER 12TH 2025" },
+  { id: "ph10", src: cbm1, alt: "Nissan Skyline bianca al raduno", eventId: "ev4", date: "DECEMBER 12TH 2025" },
+  { id: "ph11", src: cbm2, alt: "Lamborghini Huracan EVO arancione", eventId: "ev4", date: "DECEMBER 12TH 2025" },
+  { id: "ph12", src: cbm3, alt: "Pontiac Trans Am blu notte", eventId: "ev4", date: "DECEMBER 12TH 2025" },
+  { id: "ph13", src: cbm4, alt: "Mustang e Skyline al raduno notturno", eventId: "ev4", date: "DECEMBER 12TH 2025" },
+  { id: "ph14", src: cbm5, alt: "Ford Mustang nera con underglow rosso", eventId: "ev4", date: "DECEMBER 12TH 2025" },
+  { id: "ph15", src: cbm6, alt: "Motore RB26 turbo Skyline GT-R", eventId: "ev4", date: "DECEMBER 12TH 2025" },
 ];
 
 // ── Helpers ──
