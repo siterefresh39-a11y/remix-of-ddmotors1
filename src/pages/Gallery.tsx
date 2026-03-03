@@ -196,7 +196,9 @@ const Gallery = () => {
                         Vedi tutte le foto <ExternalLink size={16} />
                       </a>
                     ) : (
-                      <p className="text-foreground/40 font-body text-sm italic">Link in arrivo...</p>
+                      <span className="inline-flex items-center gap-2 px-6 py-3 bg-primary/50 text-primary-foreground/70 font-display tracking-wider text-sm rounded cursor-not-allowed">
+                        Vedi tutte le foto <ExternalLink size={16} />
+                      </span>
                     )}
                   </motion.div>
                 )}
