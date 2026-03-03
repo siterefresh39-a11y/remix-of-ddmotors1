@@ -1,17 +1,23 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Download, ArrowLeft, ExternalLink } from "lucide-react";
-import { PhotoItem, EventItem, loadEvents, loadPhotos } from "@/lib/eventStore";
+import { PhotoItem, EventItem, loadEvents, loadPhotos, EVENT_TAGS } from "@/lib/eventStore";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const Gallery = () => {
   const [events] = useState<EventItem[]>(loadEvents);
   const [photos] = useState<PhotoItem[]>(loadPhotos);
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
   const [viewerIndex, setViewerIndex] = useState<number>(0);
+  const [tagFilter, setTagFilter] = useState<string>("ALL");
+
+  const sortedEvents = useMemo(() => {
+    const filtered = tagFilter === "ALL" ? events : events.filter((e) => e.tag === tagFilter);
+    return filtered;
+  }, [events, tagFilter]);
 
   const selectedEvent = events.find((e) => e.id === selectedEventId) ?? null;
   const eventPhotos = selectedEventId ? photos.filter((p) => p.eventId === selectedEventId) : [];
-  // Total slides = photos + 1 final CTA slide
   const totalSlides = eventPhotos.length + 1;
   const isLastSlide = viewerIndex === eventPhotos.length;
 
@@ -45,9 +51,29 @@ const Gallery = () => {
             GALLERIA
           </motion.h1>
 
+          {/* Tag filter dropdown */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8 md:mb-10 flex justify-start"
+          >
+            <Select value={tagFilter} onValueChange={setTagFilter}>
+              <SelectTrigger className="w-64 bg-card border-border font-display tracking-wider text-sm">
+                <SelectValue placeholder="Filtra per tipologia" />
+              </SelectTrigger>
+              <SelectContent className="bg-card border-border">
+                <SelectItem value="ALL" className="font-display tracking-wider text-sm">TUTTI GLI EVENTI</SelectItem>
+                {EVENT_TAGS.map((tag) => (
+                  <SelectItem key={tag} value={tag} className="font-display tracking-wider text-sm">{tag}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </motion.div>
+
           {/* Event covers grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-            {events.map((event, i) => {
+            {sortedEvents.map((event, i) => {
               const count = photos.filter((p) => p.eventId === event.id).length;
               return (
                 <motion.div
@@ -116,7 +142,6 @@ const Gallery = () => {
 
             {/* Photo / CTA area */}
             <div className="flex-1 relative flex items-center justify-center overflow-hidden px-4">
-              {/* Navigation arrows */}
               {viewerIndex > 0 && (
                 <button
                   onClick={prev}
@@ -178,7 +203,6 @@ const Gallery = () => {
               </AnimatePresence>
             </div>
 
-            {/* Photo description */}
             {!isLastSlide && eventPhotos[viewerIndex] && (
               <div className="text-center py-4 px-4">
                 <p className="text-foreground/50 font-body text-sm">{eventPhotos[viewerIndex].alt}</p>
