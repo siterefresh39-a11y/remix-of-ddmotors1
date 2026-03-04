@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { EventItem, EVENT_TAGS, loadEvents } from "@/lib/eventStore";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 const Events = () => {
   const [events] = useState<EventItem[]>(loadEvents);
