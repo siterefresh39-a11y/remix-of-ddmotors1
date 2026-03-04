@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import heroImg from "@/assets/hero-headlights.jpg";
 import locandinaNight from "@/assets/locandina-ddmotors-night.jpeg";
 import carsBikesCover from "@/assets/cars-bikes-meeting-cover.jpg";
@@ -9,6 +10,7 @@ import event3 from "@/assets/event-3.jpg";
 
 const Index = () => {
   const [heroPhase, setHeroPhase] = useState<"dark" | "glow" | "flash" | "steady">("dark");
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
 
   useEffect(() => {
     const t1 = setTimeout(() => setHeroPhase("glow"), 500);
@@ -22,9 +24,9 @@ const Index = () => {
   const textVisible = heroPhase === "flash" || heroPhase === "steady";
 
   const events = [
-  { img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Raduno evento serale e lounge raffinata nel hinterland Milanese.", date: "15 Luglio 2025" },
-  { img: carsBikesCover, title: "1ST \"CARS & BIKE MEETING\"", desc: "Una serata dedicata alle leggende della strada e del motorsport.", date: "22 Agosto 2025" },
-  { img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" }];
+  { id: "ev5", img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Raduno evento serale e lounge raffinata nel hinterland Milanese.", date: "15 Luglio 2025" },
+  { id: "ev4", img: carsBikesCover, title: "1ST \"CARS & BIKE MEETING\"", desc: "Una serata dedicata alle leggende della strada e del motorsport.", date: "22 Agosto 2025" },
+  { id: "other", img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" }];
 
   return (
     <>
@@ -122,7 +124,8 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="event-card group aspect-[3/4] md:aspect-[2/3]">
+              className={`event-card group aspect-[3/4] md:aspect-[2/3] ${event.id !== "other" ? "cursor-pointer" : ""}`}
+              onClick={() => { if (event.id !== "other") setSelectedEventId(event.id); }}>
 
                 <img
                 src={event.img}
@@ -190,7 +193,93 @@ const Index = () => {
 
         </div>
       </section>
+
+      {/* Event detail dialogs */}
+      <Dialog open={!!selectedEventId} onOpenChange={(open) => !open && setSelectedEventId(null)}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-foreground/10 p-0">
+          {selectedEventId === "ev4" && (
+            <>
+              <img src={carsBikesCover} alt="Cars & Bikes Meeting" className="w-full object-cover" />
+              <div className="p-6 md:p-8 space-y-4">
+                <h2 className="font-display text-2xl md:text-3xl tracking-wider text-foreground">
+                  1ST "CARS & BIKES MEETING"
+                </h2>
+                <p className="text-foreground/80 font-body text-sm leading-relaxed whitespace-pre-line">
+{`@auto500milano SPONSOR UFFICIALE
+
+INGRESSO GRATUITO !!!!
+
+180 POSTI AUTO E MOTO
+Iscriviti per non mancare al nostro primo evento: link nelle storie e in bio
+
+📅 Venerdì 12 Dicembre
+📍Parcheggio Sergio Ramelli, Trezzano Sul Naviglio (MI)
+🕘 dalle 21:00 alle 00:00
+
+VI ASPETTIAMO NUMEROSI!!!!!!
+
+🔥NO BANG
+🎶NO MUSICA
+💨NO SGOMMATE
+💥NO SPARI NEL PARCHEGGIO
+👮‍♂️NO COMPORTAMENTI CHE POSSANO DISTURBARE O CREARE PERICOLO
+
+📲 Condividi ed entra anche tu nella famiglia di DD.MOTORS
+
+GRAZIE A "UN PONTE NELLA VITA"
+Un associazione di genitori che hanno figli con disabilità.
+Per saperne di più consultare il sito, la pagina Instagram, Facebook, mail e numero di telefono`}
+                </p>
+                <div className="space-y-1 text-foreground/70 font-body text-sm">
+                  <p>🌐 <a href="https://www.unpontenellavita.it" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground transition-colors">unpontenellavita.it</a></p>
+                  <p>📸 @unpontenellavita2023</p>
+                  <p>✉️ unpontenellavita@libero.it</p>
+                  <p>📞 339 6971339</p>
+                </div>
+                <p className="text-foreground/80 font-body text-sm leading-relaxed whitespace-pre-line">
+{`GRAZIE A @radunostatico e a @exclusivemotorframe per la partecipazione
+GRAZIE A @ruotequadrenerviano per la partecipazione
+
+GRAZIE AL @comune_trezzanosulnaviglio per aver accolto e patrocinato il nostro primo evento.`}
+                </p>
+              </div>
+            </>
+          )}
+          {selectedEventId === "ev5" && (
+            <>
+              <img src={locandinaNight} alt="DDMOTORS NIGHT" className="w-full object-cover" />
+              <div className="p-6 md:p-8 space-y-4">
+                <h2 className="font-display text-2xl md:text-3xl tracking-wider text-foreground">
+                  Diamond "shisha&lounge" X DDMOTORS present:
+                </h2>
+                <h3 className="font-display text-xl md:text-2xl tracking-wider text-foreground">
+                  1st edition of "DDMOTORS NIGHT"
+                </h3>
+                <p className="text-foreground/80 font-body text-sm leading-relaxed whitespace-pre-line">
+{`Il 20 Febbraio dalle 21:30 alle 2:30, ti aspettiamo a vivere con noi la prima serata che unisce gli appassionati di motori ad una serata in un ambiente esclusivo a pochi passi da Milano!!!!!
+
+Iscrivi la tua macchina nel link in bio prima che sia troppo tardi!!!(selezione)
+Chi sarà selezionato avrà un tavolo prenotato durante tutta la serata..
+
+Per prenotare un tavolo o avere maggiori info del locale contattare al numero 352 0928363
+Via Novara, 35 Bareggio (MI).`}
+                </p>
+                <div className="space-y-2 text-foreground/80 font-body text-sm leading-relaxed">
+                  <p className="font-semibold text-foreground">Grazie:</p>
+                  <p>@diamondshishamilano per questa collaborazione e per offrici un'ambiente perfetto per passare insieme una serata diversa dalle altre.</p>
+                  <p>@alexisrodriguez_dj che ci accompagnerà tutta la serata con la sua musica.</p>
+                  <p>@casadei.car.journal per le foto e video</p>
+                  <p>@alberto_paiano per le foto e video</p>
+                  <p>@street_custom_creew per la partecipazione e prima collaborazione</p>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </>);
+
+};
 
 };
 
