@@ -52,9 +52,7 @@ const Events = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
             className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full cursor-pointer"
-            onClick={() => {
-              if (event.id === "ev4") setSelectedEvent(event);
-            }}>
+            onClick={() => setSelectedEvent(event)}>
 
               <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               <div className="event-card-overlay group-hover:opacity-90" />
