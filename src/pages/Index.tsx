@@ -279,8 +279,5 @@ Via Novara, 35 Bareggio (MI).`}
       </Dialog>
     </>);
 
-};
-
-};
 
 export default Index;
