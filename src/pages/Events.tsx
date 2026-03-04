@@ -7,6 +7,7 @@ import { X } from "lucide-react";
 const Events = () => {
   const [events] = useState<EventItem[]>(loadEvents);
   const [filterTag, setFilterTag] = useState<string>("all");
+  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
 
   const filtered = filterTag === "all" ? events : events.filter((e) => e.tag === filterTag);
 
