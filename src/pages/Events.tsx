@@ -52,9 +52,7 @@ const Events = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
             className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full cursor-pointer"
-            onClick={() => {
-              if (event.id === "ev4") setSelectedEvent(event);
-            }}>
+            onClick={() => setSelectedEvent(event)}>
 
               <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               <div className="event-card-overlay group-hover:opacity-90" />
@@ -71,10 +69,10 @@ const Events = () => {
           )}
         </div>
 
-        {/* Detail dialog for CARS & BIKES MEETING */}
+        {/* Detail dialog */}
         <Dialog open={!!selectedEvent} onOpenChange={(open) => !open && setSelectedEvent(null)}>
           <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto bg-background border-foreground/10 p-0">
-            {selectedEvent && (
+            {selectedEvent?.id === "ev4" && (
               <>
                 <img src={selectedEvent.img} alt={selectedEvent.title} className="w-full object-cover" />
                 <div className="p-6 md:p-8 space-y-4">
@@ -119,6 +117,36 @@ GRAZIE A @ruotequadrenerviano per la partecipazione
 
 GRAZIE AL @comune_trezzanosulnaviglio per aver accolto e patrocinato il nostro primo evento.`}
                   </p>
+                </div>
+              </>
+            )}
+            {selectedEvent?.id === "ev5" && (
+              <>
+                <img src={selectedEvent.img} alt={selectedEvent.title} className="w-full object-cover" />
+                <div className="p-6 md:p-8 space-y-4">
+                  <h2 className="font-display text-2xl md:text-3xl tracking-wider text-foreground">
+                    Diamond "shisha&lounge" X DDMOTORS present:
+                  </h2>
+                  <h3 className="font-display text-xl md:text-2xl tracking-wider text-foreground">
+                    1st edition of "DDMOTORS NIGHT"
+                  </h3>
+                  <p className="text-foreground/80 font-body text-sm leading-relaxed whitespace-pre-line">
+{`Il 20 Febbraio dalle 21:30 alle 2:30, ti aspettiamo a vivere con noi la prima serata che unisce gli appassionati di motori ad una serata in un ambiente esclusivo a pochi passi da Milano!!!!!
+
+Iscrivi la tua macchina nel link in bio prima che sia troppo tardi!!!(selezione)
+Chi sarà selezionato avrà un tavolo prenotato durante tutta la serata..
+
+Per prenotare un tavolo o avere maggiori info del locale contattare al numero 352 0928363
+Via Novara, 35 Bareggio (MI).`}
+                  </p>
+                  <div className="space-y-2 text-foreground/80 font-body text-sm leading-relaxed">
+                    <p className="font-semibold text-foreground">Grazie:</p>
+                    <p>@diamondshishamilano per questa collaborazione e per offrici un'ambiente perfetto per passare insieme una serata diversa dalle altre.</p>
+                    <p>@alexisrodriguez_dj che ci accompagnerà tutta la serata con la sua musica.</p>
+                    <p>@casadei.car.journal per le foto e video</p>
+                    <p>@alberto_paiano per le foto e video</p>
+                    <p>@street_custom_creew per la partecipazione e prima collaborazione</p>
+                  </div>
                 </div>
               </>
             )}
