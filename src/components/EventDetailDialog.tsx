@@ -60,9 +60,16 @@ GRAZIE A @ruotequadrenerviano per la partecipazione
 
 GRAZIE AL @comune_trezzanosulnaviglio per aver accolto e patrocinato il nostro primo evento.`}
               </p>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
+              >
+                Clicca qui per iscrivere la tua auto
+                <ExternalLink size={14} />
+              </a>
             </div>
-          </>
-        )}
         {event?.id === "ev5" && (
           <>
             <img src={event.img} alt={event.title} className="w-full object-cover" width={672} height={448} />
@@ -90,6 +97,15 @@ Via Novara, 35 Bareggio (MI).`}
                 <p>@alberto_paiano per le foto e video</p>
                 <p>@street_custom_creew per la partecipazione e prima collaborazione</p>
               </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
+              >
+                Clicca qui per iscrivere la tua auto
+                <ExternalLink size={14} />
+              </a>
             </div>
           </>
         )}
