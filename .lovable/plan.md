@@ -1,39 +1,37 @@
 
 
-## Plan: Redesign Gallery as event covers with photo sub-gallery and download
+## Piano di ottimizzazione completo
 
-### Current state
-- Gallery page shows a flat grid of individual photos with a filter dropdown and lightbox
-- Events page shows event cards in portrait `aspect-[3/4]` format with `max-w-lg`
+### 1. Eliminare duplicazione dialog eventi
+Creare un componente condiviso `src/components/EventDetailDialog.tsx` che contiene tutto il contenuto dei dialog per ev4 e ev5. Sia `Index.tsx` che `Events.tsx` lo importeranno e useranno, eliminando ~100 righe duplicate.
 
-### New design
+### 2. Sincronizzare dati Home con eventStore
+In `Index.tsx`, l'array `events` (righe 26-29) ha date e descrizioni diverse da `eventStore.ts`. Sostituire con `loadEvents()` dal store e aggiungere l'evento "Urban Meet" (event3) come terzo elemento nel store, oppure tenerlo come dato locale ma derivando ev4/ev5 dallo store.
 
-**1. Replace flat photo grid with event cover cards (same format as Events page)**
+### 3. Aggiungere `loading="lazy"` dove manca
+- Hero background in `Index.tsx` (riga 38): e un `background-image` CSS, non un `<img>`, quindi non si applica `loading="lazy"`. Va bene cosi -- l'utente vuole che le immagini della home si carichino subito.
+- Immagine "Chi siamo" (riga 192): gia ha `loading="lazy"` -- ok.
+- Le card eventi nella home (riga 134): hanno gia `loading="lazy"` -- **ma l'utente vuole che si carichino subito**. Quindi rimuovere `loading="lazy"` dalle immagini della home, e assicurarsi che rimanga su Gallery e Events.
 
-The gallery page will show one card per event using the same portrait `aspect-[3/4] max-w-lg` card style from Events.tsx. Each card shows the event cover image, title, and date. No more flat photo grid on the main gallery view.
+### 4. Aggiungere `width`/`height` alle immagini
+Aggiungere attributi `width` e `height` espliciti alle `<img>` per evitare layout shift (CLS). Non cambia nulla visivamente grazie a `object-cover`/`object-contain`.
 
-**2. Click on a cover → open a photo sub-gallery modal**
+### 5. Aggiungere Error Boundary base
+Creare `src/components/ErrorBoundary.tsx` come class component React, wrappare l'app in `App.tsx` per catturare errori di rendering e mostrare un fallback.
 
-Clicking an event cover opens a full-screen overlay/modal showing all photos belonging to that event in a grid. Users can browse the photos within that event.
+---
 
-**3. Click on a photo in the sub-gallery → lightbox with download button**
+### Dettagli tecnici
 
-Clicking a single photo opens the existing lightbox (prev/next navigation) but with an added **download button** (using `<a href={src} download>` or programmatic blob download for cross-origin).
+**File da creare:**
+- `src/components/EventDetailDialog.tsx` -- riceve `eventId: string | null` e `onClose`, renderizza il dialog con il contenuto di ev4/ev5
+- `src/components/ErrorBoundary.tsx` -- class component con `componentDidCatch`
 
-**4. Remove the filter dropdown** — no longer needed since each event is its own entry point.
+**File da modificare:**
+- `src/pages/Index.tsx` -- importare `EventDetailDialog`, rimuovere dialog inline, usare dati da eventStore per ev4/ev5, rimuovere `loading="lazy"` dalle card eventi (l'utente le vuole caricate subito)
+- `src/pages/Events.tsx` -- importare `EventDetailDialog`, rimuovere dialog inline
+- `src/App.tsx` -- wrappare con `ErrorBoundary`
+- `src/lib/eventStore.ts` -- nessuna modifica necessaria
 
-### Files to modify
-
-1. **`src/pages/Gallery.tsx`** — Complete rewrite:
-   - Show event covers in a grid (`grid-cols-1 md:grid-cols-2`, portrait cards matching Events.tsx style)
-   - State: `selectedEventId` — when set, show a modal/overlay with that event's photos in a grid
-   - Lightbox: keep existing prev/next logic, add a download button (Download icon from lucide)
-   - Remove the filter dropdown
-
-2. **`src/lib/eventStore.ts`** — No changes needed (photos already have `eventId` linking them to events)
-
-### Technical details
-- Download button: `<a>` tag with `download` attribute pointing to photo `src`
-- Sub-gallery modal: full-screen overlay similar to lightbox but showing a grid of thumbnails
-- Lightbox download icon: lucide `Download` icon positioned next to the close `X` button
+**Immagini home (requisito utente):** Le immagini nella home NON avranno `loading="lazy"`, in modo che si carichino immediatamente come gia avviene ora. Le immagini nelle altre pagine manterranno `loading="lazy"`.
 
