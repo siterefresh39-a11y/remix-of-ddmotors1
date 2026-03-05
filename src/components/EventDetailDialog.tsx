@@ -1,4 +1,5 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ExternalLink } from "lucide-react";
 import { loadEvents, type EventItem } from "@/lib/eventStore";
 
 interface EventDetailDialogProps {
