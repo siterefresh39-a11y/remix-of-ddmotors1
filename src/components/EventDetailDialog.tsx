@@ -70,6 +70,8 @@ GRAZIE AL @comune_trezzanosulnaviglio per aver accolto e patrocinato il nostro p
                 <ExternalLink size={14} />
               </a>
             </div>
+          </>
+        )}
         {event?.id === "ev5" && (
           <>
             <img src={event.img} alt={event.title} className="w-full object-cover" width={672} height={448} />
