@@ -1,5 +1,6 @@
 import carsBikesCover from "@/assets/cars-bikes-meeting-cover.jpg";
 import locandinaNight from "@/assets/locandina-ddmotors-night.jpeg";
+import mottaDriveCover from "@/assets/motta-drive-cover.jpg";
 import ddnight1 from "@/assets/ddnight-1.jpg";
 import ddnight2 from "@/assets/ddnight-2.jpg";
 import ddnight3 from "@/assets/ddnight-3.jpg";
@@ -16,6 +17,7 @@ import cbm6 from "@/assets/cbm-6.jpg";
 export const EVENT_TAGS = [
   "DDMOTORS NIGHT",
   "DDMOTORS RADUNI",
+  "DDMOTORS DRIVE",
 ] as const;
 
 export type EventTag = (typeof EVENT_TAGS)[number];
