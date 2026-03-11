@@ -95,8 +95,8 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`event-card group aspect-[3/4] md:aspect-[2/3] ${event.id !== "other" ? "cursor-pointer" : ""}`}
-              onClick={() => { if (event.id !== "other") setSelectedEventId(event.id); }}>
+              className="event-card group aspect-[3/4] md:aspect-[2/3] cursor-pointer"
+              onClick={() => setSelectedEventId(event.id)}>
                 <img
                   src={event.img}
                   alt={event.title}
