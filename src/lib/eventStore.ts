@@ -55,6 +55,9 @@ export const defaultEvents: EventItem[] = [
 ];
 
 const defaultPhotos: PhotoItem[] = [
+  { id: "ph16", src: motta1, alt: "Audi e Abarth al tramonto sul Mottarone", eventId: "ev6", date: "15 Febbraio 2025" },
+  { id: "ph17", src: motta2, alt: "Auto parcheggiate in cima al Mottarone", eventId: "ev6", date: "15 Febbraio 2025" },
+  { id: "ph18", src: motta3, alt: "Mappa percorso Drive to Mottarone", eventId: "ev6", date: "15 Febbraio 2025" },
   { id: "ph5", src: ddnight1, alt: "VW Golf GTI al raduno notturno", eventId: "ev5", date: "20th February 2026" },
   { id: "ph6", src: ddnight2, alt: "Mercedes AMG al raduno notturno", eventId: "ev5", date: "20th February 2026" },
   { id: "ph7", src: ddnight3, alt: "Lancia Delta rossa al raduno", eventId: "ev5", date: "20th February 2026" },
