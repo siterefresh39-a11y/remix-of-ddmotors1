@@ -153,7 +153,7 @@ const Index = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            src={event3}
+            src={aboutImg}
             alt="Raduno DDMotors"
             className="w-full h-[50vh] md:h-[70vh] object-cover rounded-sm"
             width={1200}
