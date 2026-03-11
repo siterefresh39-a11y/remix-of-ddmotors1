@@ -5,7 +5,6 @@ import { ChevronDown } from "lucide-react";
 import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
 import heroImg from "@/assets/hero-headlights.jpg";
-import event3 from "@/assets/event-3.jpg";
 
 const storeEvents = loadEvents();
 
@@ -24,11 +23,8 @@ const Index = () => {
   const beamOpacity = heroPhase === "flash" ? 0.5 : heroPhase === "steady" ? 0.15 : 0;
   const textVisible = heroPhase === "flash" || heroPhase === "steady";
 
-  // Build homepage events from store + a static "Urban Meet" card
-  const events = [
-    ...storeEvents.map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date })),
-    { id: "other", img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" },
-  ];
+  // Build homepage events from store
+  const events = storeEvents.map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date }));
 
   return (
     <>
