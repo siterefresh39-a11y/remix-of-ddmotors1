@@ -12,6 +12,9 @@ import cbm3 from "@/assets/cbm-3.jpg";
 import cbm4 from "@/assets/cbm-4.jpg";
 import cbm5 from "@/assets/cbm-5.jpg";
 import cbm6 from "@/assets/cbm-6.jpg";
+import motta1 from "@/assets/motta-1.jpg";
+import motta2 from "@/assets/motta-2.jpg";
+import motta3 from "@/assets/motta-3.jpg";
 
 // ── Tag system ──
 export const EVENT_TAGS = [
