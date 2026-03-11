@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
 import heroImg from "@/assets/hero-headlights.jpg";
-import event3 from "@/assets/event-3.jpg";
+import aboutImg from "@/assets/event-3.jpg";
 
 const storeEvents = loadEvents();
 
@@ -24,11 +24,8 @@ const Index = () => {
   const beamOpacity = heroPhase === "flash" ? 0.5 : heroPhase === "steady" ? 0.15 : 0;
   const textVisible = heroPhase === "flash" || heroPhase === "steady";
 
-  // Build homepage events from store + a static "Urban Meet" card
-  const events = [
-    ...storeEvents.map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date })),
-    { id: "other", img: event3, title: "Urban Meet", desc: "Il più grande raduno urbano dell'anno, nel cuore della città.", date: "10 Settembre 2025" },
-  ];
+  // Build homepage events from store
+  const events = storeEvents.map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date }));
 
   return (
     <>
@@ -99,8 +96,8 @@ const Index = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`event-card group aspect-[3/4] md:aspect-[2/3] ${event.id !== "other" ? "cursor-pointer" : ""}`}
-              onClick={() => { if (event.id !== "other") setSelectedEventId(event.id); }}>
+              className="event-card group aspect-[3/4] md:aspect-[2/3] cursor-pointer"
+              onClick={() => setSelectedEventId(event.id)}>
                 <img
                   src={event.img}
                   alt={event.title}
@@ -156,7 +153,7 @@ const Index = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            src={event3}
+            src={aboutImg}
             alt="Raduno DDMotors"
             className="w-full h-[50vh] md:h-[70vh] object-cover rounded-sm"
             width={1200}

@@ -1,5 +1,6 @@
 import carsBikesCover from "@/assets/cars-bikes-meeting-cover.jpg";
 import locandinaNight from "@/assets/locandina-ddmotors-night.jpeg";
+import mottaDriveCover from "@/assets/motta-drive-cover.jpg";
 import ddnight1 from "@/assets/ddnight-1.jpg";
 import ddnight2 from "@/assets/ddnight-2.jpg";
 import ddnight3 from "@/assets/ddnight-3.jpg";
@@ -16,6 +17,7 @@ import cbm6 from "@/assets/cbm-6.jpg";
 export const EVENT_TAGS = [
   "DDMOTORS NIGHT",
   "DDMOTORS RADUNI",
+  "DDMOTORS DRIVE",
 ] as const;
 
 export type EventTag = (typeof EVENT_TAGS)[number];
@@ -44,6 +46,7 @@ export interface PhotoItem {
 
 // ── Default data (ev5 first = more recent) ──
 export const defaultEvents: EventItem[] = [
+  { id: "ev6", img: mottaDriveCover, title: "MOTTA DRIVE", desc: "Un'esperienza di guida dinamica sul Passo del Mottarone", date: "15 Febbraio 2025", status: "Passato", tag: "DDMOTORS DRIVE", location: "Mottarone (1.492 m)" },
   { id: "ev5", img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata evento: un connubio tra auto e raffinatezza", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Napoli, Mostra d'Oltremare", allPhotosLink: "https://example.com/ddmotors-night-photos" },
   { id: "ev4", img: carsBikesCover, title: "1ST \"CARS & BIKES MEETING\"", desc: "Imponente raduno di ogni genere di auto, una serata incredibile", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Bologna, Fiera", allPhotosLink: "" },
 ];
