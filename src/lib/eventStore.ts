@@ -35,6 +35,8 @@ export interface EventItem {
   status: string;
   tag: EventTag;
   location?: string;
+  lat?: number;
+  lng?: number;
   allPhotosLink?: string;
 }
 
@@ -49,9 +51,9 @@ export interface PhotoItem {
 
 // ── Default data (ev5 first = more recent) ──
 export const defaultEvents: EventItem[] = [
-  { id: "ev6", img: mottaDriveCover, title: "MOTTA DRIVE", desc: "Un'esperienza di guida dinamica sul Passo del Mottarone", date: "15 Febbraio 2025", status: "Passato", tag: "DDMOTORS DRIVE", location: "Mottarone (1.492 m)" },
-  { id: "ev5", img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata evento: un connubio tra auto e raffinatezza", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Bareggio (MI)", allPhotosLink: "https://example.com/ddmotors-night-photos" },
-  { id: "ev4", img: carsBikesCover, title: "1ST \"CARS & BIKES MEETING\"", desc: "Imponente raduno di ogni genere di auto, una serata incredibile", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Trezzano sul Naviglio (MI)", allPhotosLink: "" },
+  { id: "ev6", img: mottaDriveCover, title: "MOTTA DRIVE", desc: "Un'esperienza di guida dinamica sul Passo del Mottarone", date: "15 Febbraio 2025", status: "Passato", tag: "DDMOTORS DRIVE", location: "Mottarone (1.492 m)", lat: 45.8742, lng: 8.4428 },
+  { id: "ev5", img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata evento: un connubio tra auto e raffinatezza", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Bareggio (MI)", lat: 45.4833, lng: 8.9833, allPhotosLink: "https://example.com/ddmotors-night-photos" },
+  { id: "ev4", img: carsBikesCover, title: "1ST \"CARS & BIKES MEETING\"", desc: "Imponente raduno di ogni genere di auto, una serata incredibile", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Trezzano sul Naviglio (MI)", lat: 45.4167, lng: 9.0667, allPhotosLink: "" },
 ];
 
 const defaultPhotos: PhotoItem[] = [
