@@ -75,7 +75,7 @@ const CalendarPage = () => {
             >
               <iframe
                 title="DDMotors Eventi Mappa"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=6.6%2C36.6%2C18.5%2C47.1&layer=mapnik"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=8.7%2C45.3%2C9.3%2C45.95&layer=mapnik&marker=45.4833%2C8.9833&marker=45.4167%2C9.0833&marker=45.8742%2C8.4428"
                 className="absolute inset-0 w-full h-full grayscale invert opacity-70"
                 loading="lazy"
               />
