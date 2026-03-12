@@ -35,6 +35,8 @@ export interface EventItem {
   status: string;
   tag: EventTag;
   location?: string;
+  lat?: number;
+  lng?: number;
   allPhotosLink?: string;
 }
 
