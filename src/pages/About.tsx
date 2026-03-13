@@ -63,6 +63,8 @@ const About = () => {
             transition={{ duration: 0.8 }}
             src={event1}
             alt="Raduno DDMotors"
+            width={1200}
+            height={800}
             className="w-full h-[50vh] md:h-[70vh] object-cover rounded-sm"
             loading="lazy"
           />

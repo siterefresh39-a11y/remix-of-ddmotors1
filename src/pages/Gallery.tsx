@@ -92,7 +92,7 @@ const Gallery = () => {
                   className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full cursor-pointer"
                   onClick={() => openViewer(event.id)}
                 >
-                  <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  <img src={event.img} alt={event.title} width={600} height={800} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                   <div className="event-card-overlay group-hover:opacity-90" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
                     <span className="font-display text-xs tracking-widest text-foreground/50 mb-2 block">{event.date}</span>

@@ -149,6 +149,8 @@ Partecipare significa vivere la guida su strade incredibili, ma anche condivider
       </DialogContent>
     </Dialog>
   );
-};
+});
+
+EventDetailDialog.displayName = "EventDetailDialog";
 
 export default EventDetailDialog;
