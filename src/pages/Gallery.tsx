@@ -11,9 +11,16 @@ const Gallery = () => {
   const [viewerIndex, setViewerIndex] = useState<number>(0);
   const [tagFilter, setTagFilter] = useState<string>("ALL");
 
+  const photoCountByEvent = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of photos) {
+      map.set(p.eventId, (map.get(p.eventId) ?? 0) + 1);
+    }
+    return map;
+  }, [photos]);
+
   const sortedEvents = useMemo(() => {
-    const filtered = tagFilter === "ALL" ? events : events.filter((e) => e.tag === tagFilter);
-    return filtered;
+    return tagFilter === "ALL" ? events : events.filter((e) => e.tag === tagFilter);
   }, [events, tagFilter]);
 
   const selectedEvent = events.find((e) => e.id === selectedEventId) ?? null;
@@ -74,7 +81,7 @@ const Gallery = () => {
           {/* Event covers grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             {sortedEvents.map((event, i) => {
-              const count = photos.filter((p) => p.eventId === event.id).length;
+              const count = photoCountByEvent.get(event.id) ?? 0;
               return (
                 <motion.div
                   key={event.id}
@@ -85,7 +92,7 @@ const Gallery = () => {
                   className="event-card group aspect-[3/4] relative max-w-lg mx-auto w-full cursor-pointer"
                   onClick={() => openViewer(event.id)}
                 >
-                  <img src={event.img} alt={event.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  <img src={event.img} alt={event.title} width={600} height={800} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                   <div className="event-card-overlay group-hover:opacity-90" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
                     <span className="font-display text-xs tracking-widest text-foreground/50 mb-2 block">{event.date}</span>

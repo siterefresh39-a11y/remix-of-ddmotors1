@@ -1,3 +1,4 @@
+import React from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ExternalLink } from "lucide-react";
 import { loadEvents, type EventItem } from "@/lib/eventStore";
@@ -9,7 +10,7 @@ interface EventDetailDialogProps {
 
 const eventsData = loadEvents();
 
-const EventDetailDialog = ({ eventId, onClose }: EventDetailDialogProps) => {
+const EventDetailDialog = React.forwardRef<HTMLDivElement, EventDetailDialogProps>(({ eventId, onClose }, ref) => {
   const event = eventId ? eventsData.find((e) => e.id === eventId) : null;
 
   return (
@@ -148,6 +149,8 @@ Partecipare significa vivere la guida su strade incredibili, ma anche condivider
       </DialogContent>
     </Dialog>
   );
-};
+});
+
+EventDetailDialog.displayName = "EventDetailDialog";
 
 export default EventDetailDialog;

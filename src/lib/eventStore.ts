@@ -5,7 +5,7 @@ import ddnight1 from "@/assets/ddnight-1.jpg";
 import ddnight2 from "@/assets/ddnight-2.jpg";
 import ddnight3 from "@/assets/ddnight-3.jpg";
 import ddnight4 from "@/assets/ddnight-4.jpg";
-import ddnight5 from "@/assets/ddnight-5.jpg";
+
 import cbm1 from "@/assets/cbm-1.jpg";
 import cbm2 from "@/assets/cbm-2.jpg";
 import cbm3 from "@/assets/cbm-3.jpg";
