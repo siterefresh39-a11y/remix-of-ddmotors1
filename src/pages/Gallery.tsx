@@ -11,9 +11,16 @@ const Gallery = () => {
   const [viewerIndex, setViewerIndex] = useState<number>(0);
   const [tagFilter, setTagFilter] = useState<string>("ALL");
 
+  const photoCountByEvent = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const p of photos) {
+      map.set(p.eventId, (map.get(p.eventId) ?? 0) + 1);
+    }
+    return map;
+  }, [photos]);
+
   const sortedEvents = useMemo(() => {
-    const filtered = tagFilter === "ALL" ? events : events.filter((e) => e.tag === tagFilter);
-    return filtered;
+    return tagFilter === "ALL" ? events : events.filter((e) => e.tag === tagFilter);
   }, [events, tagFilter]);
 
   const selectedEvent = events.find((e) => e.id === selectedEventId) ?? null;
