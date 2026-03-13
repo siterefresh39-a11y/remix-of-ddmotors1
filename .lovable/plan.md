@@ -1,39 +1,35 @@
 
 
-## Plan: Redesign Gallery as event covers with photo sub-gallery and download
+## Analisi: errori e problemi di performance trovati
 
-### Current state
-- Gallery page shows a flat grid of individual photos with a filter dropdown and lightbox
-- Events page shows event cards in portrait `aspect-[3/4]` format with `max-w-lg`
+### Problemi trovati
 
-### New design
+**1. Import inutilizzato** — `ddnight5` in `eventStore.ts` è importato ma mai usato. Viene incluso nel bundle aumentando inutilmente il peso (è un'immagine JPG).
 
-**1. Replace flat photo grid with event cover cards (same format as Events page)**
+**2. Warning React: ref su function component** — La console mostra l'errore "Function components cannot be given refs" su `EventDetailDialog`. Radix Dialog tenta di passare un ref al componente. Si risolve wrappando con `React.forwardRef`.
 
-The gallery page will show one card per event using the same portrait `aspect-[3/4] max-w-lg` card style from Events.tsx. Each card shows the event cover image, title, and date. No more flat photo grid on the main gallery view.
+**3. Calcolo ripetuto nel render della Gallery** — Nella griglia (riga 77), `photos.filter(...)` viene ricalcolato per ogni evento ad ogni render. Si può pre-calcolare con `useMemo`.
 
-**2. Click on a cover → open a photo sub-gallery modal**
+**4. Attributi `width`/`height` mancanti** — Le immagini nella Gallery grid (riga 88) e nell'hero di About (riga 10) non hanno `width`/`height`, causando layout shift (CLS).
 
-Clicking an event cover opens a full-screen overlay/modal showing all photos belonging to that event in a grid. Users can browse the photos within that event.
+**5. Form contatti finto** — Il form in `Contact.tsx` non invia nulla. Non è un problema di performance, ma il feedback "Messaggio inviato" è fuorviante. (Non lo modifico perché richiede un backend — lo segnalo solo.)
 
-**3. Click on a photo in the sub-gallery → lightbox with download button**
+---
 
-Clicking a single photo opens the existing lightbox (prev/next navigation) but with an added **download button** (using `<a href={src} download>` or programmatic blob download for cross-origin).
+### Piano modifiche
 
-**4. Remove the filter dropdown** — no longer needed since each event is its own entry point.
+**File: `src/lib/eventStore.ts`**
+- Rimuovere l'import di `ddnight5` (non usato).
 
-### Files to modify
+**File: `src/components/EventDetailDialog.tsx`**
+- Wrappare il componente con `React.forwardRef` per eliminare il warning.
 
-1. **`src/pages/Gallery.tsx`** — Complete rewrite:
-   - Show event covers in a grid (`grid-cols-1 md:grid-cols-2`, portrait cards matching Events.tsx style)
-   - State: `selectedEventId` — when set, show a modal/overlay with that event's photos in a grid
-   - Lightbox: keep existing prev/next logic, add a download button (Download icon from lucide)
-   - Remove the filter dropdown
+**File: `src/pages/Gallery.tsx`**
+- Pre-calcolare un `Map<eventId, count>` con `useMemo` invece di filtrare dentro il loop.
+- Aggiungere `width`/`height` all'immagine nella griglia.
 
-2. **`src/lib/eventStore.ts`** — No changes needed (photos already have `eventId` linking them to events)
+**File: `src/pages/About.tsx`**
+- Aggiungere `width`/`height` all'immagine hero e a quella lazy.
 
-### Technical details
-- Download button: `<a>` tag with `download` attribute pointing to photo `src`
-- Sub-gallery modal: full-screen overlay similar to lightbox but showing a grid of thumbnails
-- Lightbox download icon: lucide `Download` icon positioned next to the close `X` button
+Nessuna modifica estetica o funzionale.
 
