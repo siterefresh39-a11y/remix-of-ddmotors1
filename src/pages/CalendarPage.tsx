@@ -1,25 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, CalendarDays } from "lucide-react";
 import { loadEvents, EVENT_TAGS } from "@/lib/eventStore";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-
-// Fix default marker icon
-delete (L.Icon.Default.prototype as any)._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-});
 
 const CalendarPage = () => {
   const [events] = useState(loadEvents);
   const [filterTag, setFilterTag] = useState("all");
 
   const filtered = filterTag === "all" ? events : events.filter((e) => e.tag === filterTag);
-  const markersEvents = filtered.filter((e) => e.lat && e.lng);
 
   return (
     <>
@@ -77,37 +65,20 @@ const CalendarPage = () => {
               )}
             </div>
 
-            {/* Interactive Map */}
+            {/* Map */}
             <motion.div
               initial={{ opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative border border-border/50 min-h-[400px] md:min-h-[500px] overflow-hidden"
+              className="relative border border-border/50 min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden"
             >
-              <MapContainer
-                center={[45.6, 8.9]}
-                zoom={9}
-                scrollWheelZoom={false}
-                className="w-full h-full absolute inset-0 grayscale invert opacity-80"
-                style={{ minHeight: "400px" }}
-              >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                {markersEvents.map((event) => (
-                  <Marker key={event.id} position={[event.lat!, event.lng!]}>
-                    <Popup>
-                      <div className="text-center">
-                        <strong className="block text-sm">{event.title}</strong>
-                        <span className="block text-xs text-gray-600">{event.date}</span>
-                        <span className="block text-xs text-gray-500">{event.location}</span>
-                      </div>
-                    </Popup>
-                  </Marker>
-                ))}
-              </MapContainer>
+              <iframe
+                title="DDMotors Eventi Mappa"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=8.7%2C45.3%2C9.3%2C45.95&layer=mapnik&marker=45.4833%2C8.9833&marker=45.4167%2C9.0833&marker=45.8742%2C8.4428"
+                className="absolute inset-0 w-full h-full grayscale invert opacity-70"
+                loading="lazy"
+              />
             </motion.div>
           </div>
         </div>
