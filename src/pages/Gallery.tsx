@@ -81,7 +81,7 @@ const Gallery = () => {
           {/* Event covers grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             {sortedEvents.map((event, i) => {
-              const count = photos.filter((p) => p.eventId === event.id).length;
+              const count = photoCountByEvent.get(event.id) ?? 0;
               return (
                 <motion.div
                   key={event.id}
