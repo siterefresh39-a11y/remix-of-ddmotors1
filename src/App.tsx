@@ -23,7 +23,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename="/remix-of-ddmotors1">
           <ScrollToTop />
           <BackToHome />
           <Routes>
