@@ -99,11 +99,11 @@ const Index = () => {
               className="event-card group aspect-[3/4] md:aspect-[2/3] cursor-pointer"
               onClick={() => setSelectedEventId(event.id)}>
                 <img
-                  src={event.img}
-                  alt={event.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  width={400}
-                  height={600} />
+                src={event.img}
+                alt={event.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                width={400}
+                height={600} />
                 <div className="event-card-overlay group-hover:opacity-90" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
                   <p className="font-display text-xs tracking-widest text-foreground/60 mb-2">{event.date}</p>
@@ -144,9 +144,9 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="section-subtitle mb-10 md:mb-16">
-            DDMotors è una community che organizza raduni, serate ed eventi dedicati al mondo dei motori.
-            Non solo auto, ma persone, passione e atmosfera.
+            className="section-subtitle mb-10 md:mb-16">DMotors è una community che organizza raduni, serate ed eventi dedicati al mondo dei motori. Non solo auto, ma persone, passione e atmosfera.
+
+
           </motion.p>
           <motion.img
             initial={{ opacity: 0, scale: 0.98 }}
@@ -163,8 +163,8 @@ const Index = () => {
       </section>
 
       <EventDetailDialog eventId={selectedEventId} onClose={() => setSelectedEventId(null)} />
-    </>
-  );
+    </>);
+
 };
 
 export default Index;
