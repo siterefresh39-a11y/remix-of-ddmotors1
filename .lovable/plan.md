@@ -1,39 +1,36 @@
 
 
-## Plan: Redesign Gallery as event covers with photo sub-gallery and download
+## Mappa interattiva con Leaflet — Segnalini per ogni evento
 
-### Current state
-- Gallery page shows a flat grid of individual photos with a filter dropdown and lightbox
-- Events page shows event cards in portrait `aspect-[3/4]` format with `max-w-lg`
+### Cosa si ottiene
+- Tutti i segnalini degli eventi visibili contemporaneamente sulla mappa
+- Click su un evento nella lista → segnalino diventa **bianco**, mappa si centra su di esso con popup (titolo + data)
+- Stile mappa scuro (CartoDB Dark Matter) coerente con l'estetica del sito
 
-### New design
+### Modifiche
 
-**1. Replace flat photo grid with event cover cards (same format as Events page)**
+**1. Installare dipendenze**
+- `leaflet` + `@types/leaflet`
 
-The gallery page will show one card per event using the same portrait `aspect-[3/4] max-w-lg` card style from Events.tsx. Each card shows the event cover image, title, and date. No more flat photo grid on the main gallery view.
+**2. `src/lib/eventStore.ts`** — Aggiungere `coords` all'interfaccia e ai dati:
+```ts
+coords?: [number, number]; // [lat, lng]
+```
+- ev6 Mottarone → `[45.8742, 8.4428]`
+- ev5 Bareggio → `[45.3992, 8.9931]`
+- ev4 Trezzano → `[45.4261, 9.0694]`
 
-**2. Click on a cover → open a photo sub-gallery modal**
+**3. `src/components/EventMap.tsx`** (nuovo) — Componente Leaflet:
+- Inizializza mappa con tile CartoDB dark_all + filtri CSS (grayscale/invert per coerenza)
+- Crea marker per ogni evento con coordinate, usando icone SVG custom
+- Marker default: colore rosso/scuro
+- Marker selezionato: colore **bianco**, popup aperto, mappa centra + zoom
+- Props: `events: EventItem[]`, `selectedEventId: string | null`
+- Usa `useEffect` per reagire ai cambi di selezione
 
-Clicking an event cover opens a full-screen overlay/modal showing all photos belonging to that event in a grid. Users can browse the photos within that event.
-
-**3. Click on a photo in the sub-gallery → lightbox with download button**
-
-Clicking a single photo opens the existing lightbox (prev/next navigation) but with an added **download button** (using `<a href={src} download>` or programmatic blob download for cross-origin).
-
-**4. Remove the filter dropdown** — no longer needed since each event is its own entry point.
-
-### Files to modify
-
-1. **`src/pages/Gallery.tsx`** — Complete rewrite:
-   - Show event covers in a grid (`grid-cols-1 md:grid-cols-2`, portrait cards matching Events.tsx style)
-   - State: `selectedEventId` — when set, show a modal/overlay with that event's photos in a grid
-   - Lightbox: keep existing prev/next logic, add a download button (Download icon from lucide)
-   - Remove the filter dropdown
-
-2. **`src/lib/eventStore.ts`** — No changes needed (photos already have `eventId` linking them to events)
-
-### Technical details
-- Download button: `<a>` tag with `download` attribute pointing to photo `src`
-- Sub-gallery modal: full-screen overlay similar to lightbox but showing a grid of thumbnails
-- Lightbox download icon: lucide `Download` icon positioned next to the close `X` button
+**4. `src/pages/CalendarPage.tsx`** — Integrazione:
+- Aggiungere stato `selectedEventId`
+- Click su card evento → `setSelectedEventId(event.id)` (toggle se già selezionato)
+- Sostituire iframe con `<EventMap events={filtered} selectedEventId={selectedEventId} />`
+- Stile `cursor-pointer` sulle card + evidenziazione visiva della card selezionata (bordo bianco)
 
