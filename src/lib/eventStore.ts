@@ -36,6 +36,7 @@ export interface EventItem {
   tag: EventTag;
   location?: string;
   allPhotosLink?: string;
+  coords?: [number, number];
 }
 
 // ── Photo type ──
