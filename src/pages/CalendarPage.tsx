@@ -2,12 +2,18 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, CalendarDays } from "lucide-react";
 import { loadEvents, EVENT_TAGS } from "@/lib/eventStore";
+import EventMap from "@/components/EventMap";
 
 const CalendarPage = () => {
   const [events] = useState(loadEvents);
   const [filterTag, setFilterTag] = useState("all");
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
 
   const filtered = filterTag === "all" ? events : events.filter((e) => e.tag === filterTag);
+
+  const handleEventClick = (id: string) => {
+    setSelectedEventId((prev) => (prev === id ? null : id));
+  };
 
   return (
     <>
@@ -44,7 +50,12 @@ const CalendarPage = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="border border-border/50 p-6 md:p-8 hover:border-foreground/40 transition-colors duration-300"
+                  onClick={() => handleEventClick(event.id)}
+                  className={`border p-6 md:p-8 cursor-pointer transition-all duration-300 ${
+                    selectedEventId === event.id
+                      ? "border-foreground/80 bg-foreground/5"
+                      : "border-border/50 hover:border-foreground/40"
+                  }`}
                 >
                   <h3 className="font-display text-2xl md:text-3xl tracking-wider text-foreground mb-4">{event.title}</h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-foreground/60 flex-wrap">
@@ -71,14 +82,9 @@ const CalendarPage = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative border border-border/50 min-h-[400px] md:min-h-[500px] flex items-center justify-center overflow-hidden"
+              className="relative border border-border/50 min-h-[400px] md:min-h-[500px] overflow-hidden"
             >
-              <iframe
-                title="DDMotors Eventi Mappa"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=8.7%2C45.3%2C9.3%2C45.95&layer=mapnik&marker=45.4833%2C8.9833&marker=45.4167%2C9.0833&marker=45.8742%2C8.4428"
-                className="absolute inset-0 w-full h-full grayscale invert opacity-70"
-                loading="lazy"
-              />
+              <EventMap events={filtered} selectedEventId={selectedEventId} />
             </motion.div>
           </div>
         </div>
