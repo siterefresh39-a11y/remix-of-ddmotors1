@@ -24,7 +24,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-lg md:text-2xl tracking-[0.2em] text-foreground/70 mt-3"
           >
-            NON È SOLO UN EVENTO. È UNA COMMUNITY.
+            NON È SOLO UN EVENTO. È TANTO DI PIÙ.
           </motion.p>
         </div>
       </section>
@@ -38,9 +38,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">PASSIONE</h2>
+            <h2 className="section-title text-3xl md:text-6xl">MISSIONE</h2>
             <p className="section-subtitle">
-              DDMotors nasce dalla passione pura per i motori. Non ci interessa il brand o il prezzo: ci interessa il rombo, l'adrenalina, il fumo degli pneumatici. Ogni evento è pensato per chi sente l'asfalto sotto i piedi.
+              DDMOTORS è un progetto che ha come obiettivo quello di unire i neofiti ai professionisti, eliminando le difficoltà che si incontrano all'inizio. Non è solo raduni o eventi. È collaborazione, ambizione tra ragazzi e ragazze giovani che hanno voglia di fare.
             </p>
           </motion.div>
 
@@ -50,9 +50,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">MOTORI</h2>
+            <h2 className="section-title text-3xl md:text-6xl">ORIGINI</h2>
             <p className="section-subtitle">
-              Dalle sportive alle classiche, dai muscle car ai tuning estremi. DDMotors è il punto d'incontro di chi vive l'auto come stile di vita, non come mezzo di trasporto.
+              Nasce nel 2025 con l'ambizione di lasciare un segno nel mondo dell'automotive. Ci piacciono i motori, l'odore della benzina ed essere parte di un mondo che stanno cercando di trasformare in effimero e senza emozioni.
             </p>
           </motion.div>
 
@@ -75,9 +75,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">PERSONE</h2>
+            <h2 className="section-title text-3xl md:text-6xl">PASSIONE</h2>
             <p className="section-subtitle">
-              La community è il cuore di DDMotors. Ogni raduno è un'occasione per conoscere nuove persone, condividere storie e creare legami che vanno oltre il parcheggio.
+              Ci incuriosisce e apprezziamo ogni sfaccettatura di questa passione. Non contano i soldi e non conta l'esperienza. Conta solo la voglia e la passione.
             </p>
           </motion.div>
 
@@ -87,9 +87,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">ATMOSFERA</h2>
+            <h2 className="section-title text-3xl md:text-6xl">COMMUNITY</h2>
             <p className="section-subtitle">
-              Luci, suoni, notti infinite. I nostri eventi non sono semplici raduni: sono esperienze immersive, pensate per farti vivere qualcosa di indimenticabile.
+              DDMotors è una community aperta a tutti. Se condividi la nostra passione, sei già dei nostri.
             </p>
           </motion.div>
         </div>
