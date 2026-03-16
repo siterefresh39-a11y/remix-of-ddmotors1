@@ -144,7 +144,7 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="section-subtitle mb-10 md:mb-16">DMotors è una community che organizza raduni, serate ed eventi dedicati al mondo dei motori. Non solo auto, ma persone, passione e atmosfera.
+            className="section-subtitle mb-10 md:mb-16">DDMOTORS è un progetto che ha come obiettivo quello di unire i neofiti con i professionisti, accomunati tra di loro da una passione. Non sono solo raduni o eventi. È tanto di più. È collaborazione tra ragazzi giovani, idee e tanta voglia di fare.
 
 
           </motion.p>
