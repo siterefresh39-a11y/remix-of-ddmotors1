@@ -117,22 +117,46 @@ Via Novara, 35 Bareggio (MI).`}
             <img src={event.img} alt={event.title} className="w-full object-cover" width={672} height={448} />
             <div className="p-6 md:p-8 space-y-4">
               <h2 className="font-display text-2xl md:text-3xl tracking-wider text-foreground">
-                MOTTA DRIVE
+                MOTTA DRIVE – PASSO DEL MOTTARONE
               </h2>
               <p className="text-foreground/80 font-body text-sm leading-relaxed whitespace-pre-line">
 {`Un'esperienza di guida pensata per veri appassionati.
 
-Gli eventi dinamici sono pensati per chi vuole vivere la propria auto su strade spettacolari, condividendo la passione con altre persone e creando una vera community.
+Un evento dinamico dedicato a chi vuole vivere la propria auto su strade spettacolari e condividere la passione con altre persone, creando una vera community.
 
-L'incontro avviene in un punto di ritrovo comune, dove i partecipanti possono conoscersi, scattare qualche foto alle auto e partecipare a un breve briefing iniziale. Successivamente si parte a scaglioni, anche in base all'esperienza di guida, per godersi il percorso in modo piacevole e organizzato.
+POSTI LIMITATI ⚠️
 
-Questo evento si svolge sul Passo del Mottarone, una strada ricca di curve e tornanti con panorami mozzafiato. Il percorso complessivo di salita e discesa è di circa 17,8 km, perfetto per chi ama la guida su strada di montagna.
+Evento a numero chiuso per mantenere un'atmosfera esclusiva e permettere a tutti di vivere al meglio l'esperienza.
 
-Una volta arrivati in cima ci si ferma per una tappa di gruppo, dove si parcheggiano le auto, si chiacchiera e ci si gode il panorama, magari prendendo qualcosa da bere o mangiare. Successivamente ci si sposta in alcuni punti panoramici per scattare foto alle auto immerse nel paesaggio.
+📍 Passo del Mottarone
 
-Gli eventi sono a numero limitato per mantenere un'atmosfera più esclusiva e permettere ai partecipanti di vivere al meglio l'esperienza.
+Percorso panoramico di circa 17,8 km tra curve e tornanti con vista mozzafiato.
 
-Partecipare significa vivere la guida su strade incredibili, ma anche condividere la propria passione con persone che provano le stesse emozioni, creando nuove amicizie e facendo parte di una community di veri appassionati.`}
+PROGRAMMA EVENTO
+
+📍 Ritrovo in un punto di incontro comune – momento per conoscersi, vedere le auto dei partecipanti e scattare qualche foto.
+
+🗣 Briefing iniziale
+
+Spiegazione del percorso e delle regole dell'evento.
+
+🚗 Partenza a scaglioni
+
+I partecipanti partiranno a piccoli gruppi, anche in base all'esperienza di guida, per godersi il percorso in sicurezza e con il giusto ritmo.
+
+⛰ Arrivo in cima al Mottarone
+
+Sosta di gruppo per rilassarsi, chiacchierare e godersi il panorama.
+
+📸 Foto panoramiche
+
+Ci sposteremo in alcuni punti panoramici per scattare foto alle auto immerse nel paesaggio.
+
+Partecipare significa vivere la guida su una delle strade più belle della zona, ma soprattutto condividere la propria passione con persone che provano le stesse emozioni.
+
+📲 Se vuoi partecipare scrivici in DM o prenota tramite il sito
+
+INFO E DETTAGLI SUL NOSTRO PROFILO`}
               </p>
               <a
                 href="#"
