@@ -22,7 +22,12 @@ const Footer = () => {
             <Mail size={24} />
           </a>
         </div>
-        <p className="text-muted-foreground text-xs">© 2025 DDMotors. Tutti i diritti riservati.</p>
+        <div className="flex flex-col items-center md:items-end gap-2">
+          <Link to="/privacy" className="text-muted-foreground text-xs hover:text-foreground transition-colors underline">
+            Informativa Privacy
+          </Link>
+          <p className="text-muted-foreground text-xs">© 2025 DDMotors. Tutti i diritti riservati.</p>
+        </div>
       </div>
     </footer>
   );
