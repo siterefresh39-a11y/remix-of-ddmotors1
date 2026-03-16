@@ -50,7 +50,7 @@ export interface PhotoItem {
 
 // ── Default data (ev5 first = more recent) ──
 export const defaultEvents: EventItem[] = [
-  { id: "ev6", img: mottaDriveCover, title: "MOTTA DRIVE", desc: "Un'esperienza di guida dinamica sul Passo del Mottarone", date: "15 Febbraio 2025", status: "Passato", tag: "DDMOTORS DRIVE", location: "Mottarone (1.492 m)", coords: [45.8742, 8.4428] },
+  { id: "ev6", img: mottaDriveCover, title: "MOTTA DRIVE", desc: "Un'esperienza di guida pensata per veri appassionati sul Passo del Mottarone", date: "15 Febbraio 2025", status: "Passato", tag: "DDMOTORS DRIVE", location: "Passo del Mottarone", coords: [45.8742, 8.4428] },
   { id: "ev5", img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata evento: un connubio tra auto e raffinatezza", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Bareggio (MI)", allPhotosLink: "https://example.com/ddmotors-night-photos", coords: [45.4215, 8.9935] },
   { id: "ev4", img: carsBikesCover, title: "1ST \"CARS & BIKES MEETING\"", desc: "Imponente raduno di ogni genere di auto, una serata incredibile", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Trezzano sul Naviglio (MI)", allPhotosLink: "", coords: [45.4213, 9.0674] },
 ];
