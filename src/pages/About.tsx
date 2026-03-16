@@ -75,9 +75,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">PERSONE</h2>
+            <h2 className="section-title text-3xl md:text-6xl">PASSIONE</h2>
             <p className="section-subtitle">
-              La community è il cuore di DDMotors. Ogni raduno è un'occasione per conoscere nuove persone, condividere storie e creare legami che vanno oltre il parcheggio.
+              Ci incuriosisce e apprezziamo ogni sfaccettatura di questa passione. Non contano i soldi e non conta l'esperienza. Conta solo la voglia e la passione.
             </p>
           </motion.div>
 
