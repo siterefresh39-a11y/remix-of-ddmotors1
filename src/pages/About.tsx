@@ -24,7 +24,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="font-display text-lg md:text-2xl tracking-[0.2em] text-foreground/70 mt-3"
           >
-            NON È SOLO UN EVENTO. È UNA COMMUNITY.
+            NON È SOLO UN EVENTO. È TANTO DI PIÙ.
           </motion.p>
         </div>
       </section>
