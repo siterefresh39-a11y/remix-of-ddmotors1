@@ -87,9 +87,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">ATMOSFERA</h2>
+            <h2 className="section-title text-3xl md:text-6xl">COMMUNITY</h2>
             <p className="section-subtitle">
-              Luci, suoni, notti infinite. I nostri eventi non sono semplici raduni: sono esperienze immersive, pensate per farti vivere qualcosa di indimenticabile.
+              DDMotors è una community aperta a tutti. Se condividi la nostra passione, sei già dei nostri.
             </p>
           </motion.div>
         </div>
