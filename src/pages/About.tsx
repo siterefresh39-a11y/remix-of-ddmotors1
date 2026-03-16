@@ -50,9 +50,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">MOTORI</h2>
+            <h2 className="section-title text-3xl md:text-6xl">ORIGINI</h2>
             <p className="section-subtitle">
-              Dalle sportive alle classiche, dai muscle car ai tuning estremi. DDMotors è il punto d'incontro di chi vive l'auto come stile di vita, non come mezzo di trasporto.
+              Nasce nel 2025 con l'ambizione di lasciare un segno nel mondo dell'automotive. Ci piacciono i motori, l'odore della benzina ed essere parte di un mondo che stanno cercando di trasformare in effimero e senza emozioni.
             </p>
           </motion.div>
 
