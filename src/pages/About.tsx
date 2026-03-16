@@ -38,9 +38,9 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="section-title text-3xl md:text-6xl">PASSIONE</h2>
+            <h2 className="section-title text-3xl md:text-6xl">MISSIONE</h2>
             <p className="section-subtitle">
-              DDMotors nasce dalla passione pura per i motori. Non ci interessa il brand o il prezzo: ci interessa il rombo, l'adrenalina, il fumo degli pneumatici. Ogni evento è pensato per chi sente l'asfalto sotto i piedi.
+              DDMOTORS è un progetto che ha come obiettivo quello di unire i neofiti ai professionisti, eliminando le difficoltà che si incontrano all'inizio. Non è solo raduni o eventi. È collaborazione, ambizione tra ragazzi e ragazze giovani che hanno voglia di fare.
             </p>
           </motion.div>
 
