@@ -25,7 +25,7 @@ const Index = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain md:object-cover"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
@@ -38,14 +38,14 @@ const Index = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-widest glow-text text-foreground">
+            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-widest glow-text text-foreground">
             DDMOTORS
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="font-display text-lg md:text-2xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
+            className="font-display text-base md:text-xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
             PASSIONE. MOTORI. EVENTI.
           </motion.p>
           <motion.div
