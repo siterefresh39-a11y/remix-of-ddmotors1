@@ -45,7 +45,7 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="font-display text-lg md:text-2xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
+            className="font-display text-base md:text-xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
             PASSIONE. MOTORI. EVENTI.
           </motion.p>
           <motion.div
