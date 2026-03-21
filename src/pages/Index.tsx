@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
-import heroImg from "@/assets/hero-headlights.jpg";
 import aboutImg from "@/assets/event-3.jpg";
 
 const storeEvents = loadEvents();
 
 const Index = () => {
-  const [heroPhase, setHeroPhase] = useState<"dark" | "glow" | "flash" | "steady">("dark");
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setHeroPhase("glow"), 500);
-    const t2 = setTimeout(() => setHeroPhase("flash"), 2000);
-    const t3 = setTimeout(() => setHeroPhase("steady"), 2800);
-    return () => {clearTimeout(t1);clearTimeout(t2);clearTimeout(t3);};
-  }, []);
-
-  const headlightOpacity = heroPhase === "dark" ? 0 : heroPhase === "glow" ? 0.6 : heroPhase === "flash" ? 1 : 0.8;
-  const beamOpacity = heroPhase === "flash" ? 0.5 : heroPhase === "steady" ? 0.15 : 0;
-  const textVisible = heroPhase === "flash" || heroPhase === "steady";
 
   // Build homepage events from store
   const events = storeEvents.map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date }));
@@ -38,7 +25,6 @@ const Index = () => {
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          poster={heroImg}
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
@@ -49,21 +35,21 @@ const Index = () => {
         <div className="relative z-10 text-center px-5">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
-            animate={textVisible ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-widest glow-text text-foreground">
+            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-widest glow-text text-foreground">
             DDMOTORS
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={textVisible ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="font-display text-base md:text-xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
+            className="font-display text-lg md:text-2xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
             PASSIONE. MOTORI. EVENTI.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={textVisible ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-6 md:mt-10">
             <Link
@@ -76,7 +62,7 @@ const Index = () => {
 
         <motion.div
           initial={{ opacity: 0 }}
-          animate={textVisible ? { opacity: 1 } : {}}
+          animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2">
           <ChevronDown className="text-foreground/40 animate-bounce" size={28} />
@@ -147,7 +133,7 @@ const Index = () => {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[
-              { to: "/community", title: "COMMUNITY", desc: "Entra nella nostra community e condividi la tua passione.", img: heroImg },
+              { to: "/community", title: "COMMUNITY", desc: "Entra nella nostra community e condividi la tua passione.", img: aboutImg },
               { to: "/progetti", title: "PROGETTI", desc: "Scopri i progetti a cui stiamo lavorando.", img: aboutImg },
             ].map((card, i) => (
               <motion.div
