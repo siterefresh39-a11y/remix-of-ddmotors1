@@ -30,36 +30,42 @@ const Index = () => {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-screen w-full overflow-hidden bg-background flex items-center justify-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-opacity duration-[2s]"
-          style={{ backgroundImage: `url(${heroImg})`, opacity: heroPhase === "dark" ? 0 : 0.3 }} />
+      <section className="relative h-screen w-full overflow-hidden bg-background flex items-start justify-center pt-[25vh] md:pt-[20vh]">
+        {/* Video background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster={heroImg}
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
 
-        <div className="headlight absolute w-[200px] h-[200px] md:w-[350px] md:h-[350px] left-[15%] md:left-[25%] top-1/2 -translate-y-1/2 rounded-full transition-all duration-[1.5s]" style={{ opacity: headlightOpacity }} />
-        <div className="headlight-beam absolute w-[200px] md:w-[300px] left-[15%] md:left-[25%] top-1/2 transition-all duration-[1s]" style={{ opacity: beamOpacity, height: beamOpacity > 0 ? "70vh" : "0" }} />
-        <div className="headlight absolute w-[200px] h-[200px] md:w-[350px] md:h-[350px] right-[15%] md:right-[25%] top-1/2 -translate-y-1/2 rounded-full transition-all duration-[1.5s]" style={{ opacity: headlightOpacity }} />
-        <div className="headlight-beam absolute w-[200px] md:w-[300px] right-[15%] md:right-[25%] top-1/2 transition-all duration-[1s]" style={{ opacity: beamOpacity, height: beamOpacity > 0 ? "70vh" : "0" }} />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-background/50" />
 
         <div className="relative z-10 text-center px-5">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={textVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display text-6xl md:text-9xl lg:text-[10rem] font-bold tracking-widest glow-text text-foreground">
+            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-widest glow-text text-foreground">
             DDMOTORS
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={textVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="font-display text-xl md:text-3xl tracking-[0.3em] text-foreground/80 mt-4 md:mt-6">
+            className="font-display text-base md:text-xl tracking-[0.3em] text-foreground/80 mt-3 md:mt-4">
             PASSIONE. MOTORI. EVENTI.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={textVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 md:mt-12">
+            className="mt-6 md:mt-10">
             <Link
               to="/raduni"
               className="inline-block font-display text-sm md:text-base tracking-widest uppercase border border-foreground/50 px-8 py-3 md:px-12 md:py-4 text-foreground hover:bg-foreground hover:text-background transition-all duration-300">
