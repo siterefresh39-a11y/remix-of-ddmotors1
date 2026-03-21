@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
 import aboutImg from "@/assets/event-3.jpg";
+import heroVideo from "@/assets/hero.mp4";
 
 const storeEvents = loadEvents();
 
@@ -26,7 +27,7 @@ const Index = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
 
         {/* Dark overlay */}
