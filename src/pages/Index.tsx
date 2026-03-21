@@ -86,7 +86,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="section-title">
-            EVENTI RECENTI
+            PROSSIMI EVENTI
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {events.map((event, i) =>
@@ -125,6 +125,46 @@ const Index = () => {
               SCOPRI TUTTI GLI EVENTI
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ESPLORA */}
+      <section className="section-padding">
+        <div className="max-w-7xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="section-title">
+            ESPLORA
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {[
+              { to: "/community", title: "COMMUNITY", desc: "Entra nella nostra community e condividi la tua passione.", img: heroImg },
+              { to: "/progetti", title: "PROGETTI", desc: "Scopri i progetti a cui stiamo lavorando.", img: aboutImg },
+            ].map((card, i) => (
+              <motion.div
+                key={card.to}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.15 }}>
+                <Link to={card.to} className="event-card group aspect-[3/2] block">
+                  <img
+                    src={card.img}
+                    alt={card.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy" />
+                  <div className="event-card-overlay group-hover:opacity-90" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-10">
+                    <h3 className="font-display text-2xl md:text-3xl tracking-wider text-foreground mb-2">{card.title}</h3>
+                    <p className="text-foreground/70 text-sm font-body leading-relaxed">{card.desc}</p>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

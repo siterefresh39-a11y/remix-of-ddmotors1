@@ -14,6 +14,8 @@ import Gallery from "./pages/Gallery";
 import CalendarPage from "./pages/CalendarPage";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
+import Community from "./pages/Community";
+import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +38,8 @@ const App = () => (
               <Route path="/calendario" element={<CalendarPage />} />
               <Route path="/contatti" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/community" element={<Community />} />
+              <Route path="/progetti" element={<Projects />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
