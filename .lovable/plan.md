@@ -1,24 +1,25 @@
 
 
-## Piano: Video responsive per mobile + testo originale su desktop
+## Piano: Pagina Community completa
 
-### Problema
-Su mobile il video con `object-cover` mostra solo la parte centrale della macchina (crop laterale). Su desktop il video dovrebbe essere più contenuto, non a schermo intero.
+### Struttura della pagina
 
-### Approccio
-- **Mobile**: mantenere il video a tutto schermo ma usare `object-position` per mostrare una porzione migliore, oppure cambiare da `object-cover` a `object-contain` solo su mobile
-- **Desktop**: ridurre l'altezza della hero section e contenere il video, ripristinando le dimensioni testo originali
+Riscrivere `src/pages/Community.tsx` con le seguenti sezioni, usando `framer-motion` per le animazioni (stesso pattern di About/Index):
 
-### Modifiche in `src/pages/Index.tsx`
+1. **Hero** — Titolo grande "LA COMMUNITY PER CHI VUOLE RACCONTARE L'AUTOMOTIVE", sottotitolo, pulsante "Entra nella community" (link `#` per ora)
 
-1. **Video responsive**:
-   - Mobile: `object-contain` + sfondo nero → il video si vede interamente senza crop
-   - Desktop: mantenere `object-cover` per effetto full-bleed
-   - Classe: `object-contain md:object-cover`
+2. **Cos'è DDMotors** — Due paragrafi descrittivi con animazione fade-in al scroll
 
-2. **Testo ripristinato alle dimensioni originali** (pre-ingrandimento):
-   - Titolo: da `text-5xl md:text-7xl lg:text-8xl` → `text-4xl md:text-6xl lg:text-7xl`
-   - Slogan: da `text-lg md:text-2xl` → `text-base md:text-xl`
+3. **Cosa ottieni** — Griglia/lista con le 5 voci (📸 📹 🚗 🤝 🚀), ogni voce in una card scura
 
-3. **Posizione del video su mobile**: il video con `object-contain` si centrerà naturalmente mostrando l'auto intera
+4. **La Visione** — Testo narrativo con enfasi su "Non è solo una community" e "Questo è solo l'inizio"
+
+5. **CTA finale** — Pulsante "Entra nel canale WhatsApp" (link `#` placeholder), prominente con styling primario
+
+### Dettagli tecnici
+
+- **File**: `src/pages/Community.tsx`
+- **Dipendenze**: `framer-motion`, `Button` da `@/components/ui/button`, `lucide-react` per icone
+- **Stile**: Dark theme coerente col resto del sito, `section-padding`, `section-title`, `section-subtitle` classes
+- **Pulsanti WhatsApp**: `<a href="#">` wrappati in `Button`, non navigano da nessuna parte per ora
 
