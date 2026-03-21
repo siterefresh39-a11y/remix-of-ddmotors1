@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
 import aboutImg from "@/assets/event-3.jpg";
+import heroVideo from "@/assets/hero.mp4";
 
 const storeEvents = loadEvents();
 
