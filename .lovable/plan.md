@@ -1,25 +1,21 @@
 
 
-## Piano: Pagina Community completa
+## Piano: Tab Community — Fotografi + Selective Club+
 
-### Struttura della pagina
+### Struttura
 
-Riscrivere `src/pages/Community.tsx` con le seguenti sezioni, usando `framer-motion` per le animazioni (stesso pattern di About/Index):
+La pagina Community avrà due tab in alto:
+- **Fotografi** — il contenuto attuale (hero, cos'è, cosa ottieni, visione, CTA WhatsApp)
+- **Selective Club+** — sezione "Coming Soon" con titolo, breve teaser e badge coming soon
 
-1. **Hero** — Titolo grande "LA COMMUNITY PER CHI VUOLE RACCONTARE L'AUTOMOTIVE", sottotitolo, pulsante "Entra nella community" (link `#` per ora)
+### Modifiche in `src/pages/Community.tsx`
 
-2. **Cos'è DDMotors** — Due paragrafi descrittivi con animazione fade-in al scroll
+1. **Aggiungere state per tab attivo** (`useState`) — default "fotografi"
+2. **Barra tab** in cima alla pagina con due pulsanti stilizzati (Fotografi / Selective Club+), evidenziando quello attivo
+3. **Contenuto condizionale**:
+   - Se tab = "fotografi" → mostra tutto il contenuto attuale invariato
+   - Se tab = "selective" → mostra una sezione centrata con titolo "Selective Club+", un'icona/badge "Coming Soon" e un breve testo placeholder tipo "Qualcosa di esclusivo sta arrivando. Stay tuned."
+4. Animazione `framer-motion` anche sul cambio tab (fade in)
 
-3. **Cosa ottieni** — Griglia/lista con le 5 voci (📸 📹 🚗 🤝 🚀), ogni voce in una card scura
-
-4. **La Visione** — Testo narrativo con enfasi su "Non è solo una community" e "Questo è solo l'inizio"
-
-5. **CTA finale** — Pulsante "Entra nel canale WhatsApp" (link `#` placeholder), prominente con styling primario
-
-### Dettagli tecnici
-
-- **File**: `src/pages/Community.tsx`
-- **Dipendenze**: `framer-motion`, `Button` da `@/components/ui/button`, `lucide-react` per icone
-- **Stile**: Dark theme coerente col resto del sito, `section-padding`, `section-title`, `section-subtitle` classes
-- **Pulsanti WhatsApp**: `<a href="#">` wrappati in `Button`, non navigano da nessuna parte per ora
+Nessun nuovo file o route necessario — tutto gestito dentro la stessa pagina con state React.
 
