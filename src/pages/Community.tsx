@@ -94,16 +94,18 @@ const Community = () => {
                 <motion.h2 className="section-title text-3xl md:text-5xl text-center mb-12" {...fadeUp}>
                   COSA OTTIENI
                 </motion.h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {benefits.map((b, i) => (
                     <motion.div
                       key={b.title}
-                      className="rounded-lg border border-border bg-card p-6 flex items-start gap-4"
-                      {...fadeUp}
+                      className="group rounded-lg border border-border bg-card p-5 sm:p-6 flex items-center sm:items-start gap-4 cursor-default transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                     >
-                      <b.icon className="text-primary shrink-0 mt-1" size={28} />
-                      <span className="text-foreground text-base md:text-lg font-medium">{b.title}</span>
+                      <b.icon className="text-primary shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} />
+                      <span className="text-foreground text-sm sm:text-base md:text-lg font-medium">{b.title}</span>
                     </motion.div>
                   ))}
                 </div>
