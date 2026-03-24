@@ -6,6 +6,9 @@ import { Camera, Video, Car, Users, Rocket, Crown, Flag, MapPin, Target } from "
 import selective1 from "@/assets/selective-1.jpg";
 import selective2 from "@/assets/selective-2.jpg";
 import selective3 from "@/assets/selective-3.jpg";
+import fotografi1 from "@/assets/fotografi-1.jpg";
+import fotografi2 from "@/assets/fotografi-2.jpg";
+import fotografi3 from "@/assets/fotografi-3.jpg";
 
 const benefits = [
   { icon: Camera, title: "Condivisione lavori e feedback reali" },
@@ -24,6 +27,15 @@ const selectiveBenefits = [
 ];
 
 const selectiveImages = [selective1, selective2, selective3];
+const fotografiImages = [fotografi1, fotografi2, fotografi3];
+
+const ImageBreak = ({ src, alt }: { src: string; alt: string }) => (
+  <section className="section-padding py-8">
+    <motion.div className="max-w-4xl mx-auto" {...fadeUp}>
+      <img src={src} alt={alt} className="w-full rounded-lg object-cover h-56 md:h-72" loading="lazy" width={1024} height={576} />
+    </motion.div>
+  </section>
+);
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -89,7 +101,7 @@ const Community = () => {
               </div>
             </section>
 
-            {/* Cos'è DDMotors */}
+            <ImageBreak src={fotografiImages[0]} alt="Fotografo automotive in pista" />
             <section className="section-padding">
               <div className="max-w-3xl mx-auto space-y-6 text-center">
                 <motion.p className="text-lg md:text-xl text-muted-foreground" {...fadeUp}>
@@ -125,6 +137,8 @@ const Community = () => {
               </div>
             </section>
 
+            <ImageBreak src={fotografiImages[1]} alt="Videomaker al car event" />
+
             {/* La Visione */}
             <section className="section-padding">
               <div className="max-w-3xl mx-auto text-center space-y-6">
@@ -148,6 +162,8 @@ const Community = () => {
                 </motion.p>
               </div>
             </section>
+
+            <ImageBreak src={fotografiImages[2]} alt="Fotografi al car meet" />
 
             {/* CTA finale */}
             <section className="section-padding">
@@ -189,23 +205,7 @@ const Community = () => {
               </div>
             </section>
 
-            {/* Gallery */}
-            <section className="section-padding">
-              <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-                {selectiveImages.map((img, i) => (
-                  <motion.div
-                    key={i}
-                    className="overflow-hidden rounded-lg"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: i * 0.15 }}
-                  >
-                    <img src={img} alt={`Selective Club ${i + 1}`} loading="lazy" width={1024} height={640} className="w-full h-48 md:h-56 object-cover" />
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+            <ImageBreak src={selectiveImages[0]} alt="Raduno esclusivo Selective Club" />
 
             {/* Cosa offriamo */}
             <section className="section-padding">
@@ -231,6 +231,8 @@ const Community = () => {
               </div>
             </section>
 
+            <ImageBreak src={selectiveImages[1]} alt="Esperienza di guida Selective Club" />
+
             {/* Accesso limitato */}
             <section className="section-padding">
               <div className="max-w-3xl mx-auto text-center space-y-4">
@@ -242,6 +244,8 @@ const Community = () => {
                 </motion.p>
               </div>
             </section>
+
+            <ImageBreak src={selectiveImages[2]} alt="Networking esclusivo Selective Club" />
 
             {/* CTA WhatsApp */}
             <section className="section-padding">
