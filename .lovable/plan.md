@@ -1,26 +1,25 @@
 
 
-## Piano: Immagine hero più grande su desktop
+## Piano: Copertine personalizzate per i riquadri Community e Progetti
 
-### Problema
-Su mobile l'immagine con `object-contain` va bene (auto visibile per intero). Su desktop però la macchina appare troppo piccola perché `object-contain` lascia molto spazio vuoto.
+### Cosa cambia
 
-### Soluzione
-Usare `object-cover` su desktop e `object-contain` solo su mobile:
-- Classe immagine: `object-contain md:object-cover`
+Generare due immagini di copertina tramite AI e usarle nei riquadri della sezione "ESPLORA" nella homepage:
 
-Questo fa sì che su desktop l'immagine riempia tutta la hero section mostrando la macchina grande, mentre su mobile resta visibile per intero senza crop.
+1. **Community** — Logo/illustrazione a tema community automotive (volanti, persone, auto, spirito di gruppo)
+2. **Progetti** — Logo/illustrazione a tema progetti generici (ingranaggi, blueprint, lampadine, strumenti creativi — non solo motori)
 
-### Modifica in `src/pages/Index.tsx`
+### Modifiche
 
-**Riga 26** — cambiare la classe dell'`<img>`:
-```
-// Da:
-className="absolute inset-0 w-full h-full object-contain"
+1. **Generare le due immagini** con Nano banana pro, stile dark/minimal coerente col sito:
+   - `src/assets/community-cover.jpg` — community + motori
+   - `src/assets/projects-cover.jpg` — progetti generici/creativi
 
-// A:
-className="absolute inset-0 w-full h-full object-contain md:object-cover"
-```
+2. **`src/pages/Index.tsx`**:
+   - Aggiungere import delle due nuove immagini
+   - Nella sezione ESPLORA, sostituire `img: aboutImg` con le rispettive copertine per Community e Progetti
 
-Una sola riga da modificare.
+### Prompt immagini (stile dark, sfondo nero, illustrazione moderna)
+- **Community**: "Dark minimal illustration of an automotive community, silhouettes of people around cars, warm accent lights, black background, modern editorial style"
+- **Progetti**: "Dark minimal illustration representing creative projects, gears, lightbulb, blueprints, tools, collaborative work, black background, modern editorial style"
 
