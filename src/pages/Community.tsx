@@ -27,6 +27,15 @@ const selectiveBenefits = [
 ];
 
 const selectiveImages = [selective1, selective2, selective3];
+const fotografiImages = [fotografi1, fotografi2, fotografi3];
+
+const ImageBreak = ({ src, alt }: { src: string; alt: string }) => (
+  <section className="section-padding py-8">
+    <motion.div className="max-w-4xl mx-auto" {...fadeUp}>
+      <img src={src} alt={alt} className="w-full rounded-lg object-cover h-56 md:h-72" loading="lazy" width={1024} height={576} />
+    </motion.div>
+  </section>
+);
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
