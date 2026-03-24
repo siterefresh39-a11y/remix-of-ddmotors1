@@ -137,6 +137,8 @@ const Community = () => {
               </div>
             </section>
 
+            <ImageBreak src={fotografiImages[1]} alt="Videomaker al car event" />
+
             {/* La Visione */}
             <section className="section-padding">
               <div className="max-w-3xl mx-auto text-center space-y-6">
