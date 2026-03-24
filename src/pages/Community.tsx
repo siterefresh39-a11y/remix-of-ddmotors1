@@ -101,7 +101,7 @@ const Community = () => {
               </div>
             </section>
 
-            {/* Cos'è DDMotors */}
+            <ImageBreak src={fotografiImages[0]} alt="Fotografo automotive in pista" />
             <section className="section-padding">
               <div className="max-w-3xl mx-auto space-y-6 text-center">
                 <motion.p className="text-lg md:text-xl text-muted-foreground" {...fadeUp}>
