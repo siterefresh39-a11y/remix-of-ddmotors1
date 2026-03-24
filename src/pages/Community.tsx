@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Video, Car, Users, Rocket, Crown, Flag, MapPin, Target } from "lucide-react";
+import { Camera, Video, Car, Users, Rocket, Crown, Flag, MapPin, Target, ExternalLink } from "lucide-react";
 import selective1 from "@/assets/selective-1.jpg";
 import selective2 from "@/assets/selective-2.jpg";
 import selective3 from "@/assets/selective-3.jpg";
@@ -171,9 +171,10 @@ const Community = () => {
                 <p className="text-lg md:text-xl text-muted-foreground">
                   Se vuoi trasformare la tua passione in qualcosa di concreto:
                 </p>
-                <Button size="lg" asChild>
-                  <a href="#">👉 Entra nel canale WhatsApp</a>
-                </Button>
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                   className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display tracking-wider text-sm md:text-base hover:bg-primary/90 transition-colors rounded">
+                  👉 Entra nel canale WhatsApp <ExternalLink size={16} />
+                </a>
               </motion.div>
             </section>
           </motion.div>
@@ -253,9 +254,10 @@ const Community = () => {
                 <p className="text-lg md:text-xl text-muted-foreground">
                   Vuoi far parte del Selective Club?
                 </p>
-                <Button size="lg" asChild>
-                  <a href="#">👉 Entra nel gruppo WhatsApp</a>
-                </Button>
+                <a href="#" target="_blank" rel="noopener noreferrer"
+                   className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display tracking-wider text-sm md:text-base hover:bg-primary/90 transition-colors rounded">
+                  👉 Entra nel gruppo WhatsApp <ExternalLink size={16} />
+                </a>
               </motion.div>
             </section>
           </motion.div>
