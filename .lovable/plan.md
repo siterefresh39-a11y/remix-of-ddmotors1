@@ -1,21 +1,26 @@
 
 
-## Piano: Tab Community — Fotografi + Selective Club+
+## Piano: Sostituire video hero con immagine
 
-### Struttura
+### Cosa cambia
 
-La pagina Community avrà due tab in alto:
-- **Fotografi** — il contenuto attuale (hero, cos'è, cosa ottieni, visione, CTA WhatsApp)
-- **Selective Club+** — sezione "Coming Soon" con titolo, breve teaser e badge coming soon
+Sostituire il video di sfondo nella hero section con l'immagine caricata (Chevrolet Tahoe su sfondo nero). L'immagine deve essere full-screen senza crop, specialmente su mobile.
 
-### Modifiche in `src/pages/Community.tsx`
+### Modifiche
 
-1. **Aggiungere state per tab attivo** (`useState`) — default "fotografi"
-2. **Barra tab** in cima alla pagina con due pulsanti stilizzati (Fotografi / Selective Club+), evidenziando quello attivo
-3. **Contenuto condizionale**:
-   - Se tab = "fotografi" → mostra tutto il contenuto attuale invariato
-   - Se tab = "selective" → mostra una sezione centrata con titolo "Selective Club+", un'icona/badge "Coming Soon" e un breve testo placeholder tipo "Qualcosa di esclusivo sta arrivando. Stay tuned."
-4. Animazione `framer-motion` anche sul cambio tab (fade in)
+1. **Copiare l'immagine** in `src/assets/hero.jpg`
 
-Nessun nuovo file o route necessario — tutto gestito dentro la stessa pagina con state React.
+2. **Eliminare `src/assets/hero.mp4`** per liberare spazio
+
+3. **`src/pages/Index.tsx`**:
+   - Sostituire `import heroVideo from "@/assets/hero.mp4"` con `import heroImage from "@/assets/hero.jpg"`
+   - Sostituire il tag `<video>` con un `<img>` con classi `absolute inset-0 w-full h-full object-contain` (su tutte le dimensioni, per non tagliare mai l'immagine). Lo sfondo nero della sezione (`bg-black`) colmerà le bande laterali/superiori
+   - Cambiare `bg-background` della section in `bg-black` per coerenza con lo sfondo nero dell'immagine
+   - Ridurre l'overlay da `bg-background/50` a `bg-black/30` per mantenere visibilità
+
+4. **`src/vite-env.d.ts`**: rimuovere la dichiarazione `*.mp4` (non più necessaria)
+
+### Risultato
+- Desktop: immagine centrata a schermo intero, bande nere sopra/sotto se necessario
+- Mobile: immagine visibile per intero senza crop, formato verticale dell'immagine si adatta bene
 
