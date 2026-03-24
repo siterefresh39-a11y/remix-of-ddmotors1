@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
 import aboutImg from "@/assets/event-3.jpg";
-import heroVideo from "@/assets/hero.mp4";
+import heroImage from "@/assets/hero.jpg";
 
 const storeEvents = loadEvents();
 
@@ -18,20 +18,16 @@ const Index = () => {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-screen w-full overflow-hidden bg-background flex items-start justify-center pt-[25vh] md:pt-[20vh]">
-        {/* Video background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-contain md:object-cover"
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+      <section className="relative h-screen w-full overflow-hidden bg-black flex items-start justify-center pt-[25vh] md:pt-[20vh]">
+        {/* Image background */}
+        <img
+          src={heroImage}
+          alt="DDMotors Hero"
+          className="absolute inset-0 w-full h-full object-contain"
+        />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-background/50" />
+        <div className="absolute inset-0 bg-black/30" />
 
         <div className="relative z-10 text-center px-5">
           <motion.h1
