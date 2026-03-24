@@ -205,23 +205,7 @@ const Community = () => {
               </div>
             </section>
 
-            {/* Gallery */}
-            <section className="section-padding">
-              <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-                {selectiveImages.map((img, i) => (
-                  <motion.div
-                    key={i}
-                    className="overflow-hidden rounded-lg"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.5, delay: i * 0.15 }}
-                  >
-                    <img src={img} alt={`Selective Club ${i + 1}`} loading="lazy" width={1024} height={640} className="w-full h-48 md:h-56 object-cover" />
-                  </motion.div>
-                ))}
-              </div>
-            </section>
+            <ImageBreak src={selectiveImages[0]} alt="Raduno esclusivo Selective Club" />
 
             {/* Cosa offriamo */}
             <section className="section-padding">
