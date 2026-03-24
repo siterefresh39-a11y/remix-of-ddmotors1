@@ -245,6 +245,8 @@ const Community = () => {
               </div>
             </section>
 
+            <ImageBreak src={selectiveImages[2]} alt="Networking esclusivo Selective Club" />
+
             {/* CTA WhatsApp */}
             <section className="section-padding">
               <motion.div className="max-w-2xl mx-auto text-center space-y-6" {...fadeUp}>
