@@ -231,6 +231,8 @@ const Community = () => {
               </div>
             </section>
 
+            <ImageBreak src={selectiveImages[1]} alt="Esperienza di guida Selective Club" />
+
             {/* Accesso limitato */}
             <section className="section-padding">
               <div className="max-w-3xl mx-auto text-center space-y-4">
