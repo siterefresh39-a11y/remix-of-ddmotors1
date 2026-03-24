@@ -1,35 +1,45 @@
 
 
-## Piano: Redesign completo della scheda Selective Club+
+## Piano: Immagini distribuite nel testo per entrambe le sezioni
 
 ### Cosa cambia
 
-Sostituire il placeholder "Coming Soon" con il contenuto completo fornito, aggiungere 2-3 immagini AI generate nello stile delle copertine community (dark, silhouette, accenti caldi), e il pulsante WhatsApp.
+Invece di raggruppare le immagini in un unico blocco gallery, distribuirle strategicamente tra le sezioni di testo sia in **Fotografi** che in **Selective Club+**.
 
-### Immagini da generare (3 immagini, stile copertina community)
+### Immagini da generare (6 totali)
 
-Usando Nano banana pro, stile dark/minimal con silhouette e accenti warm amber su sfondo nero:
+**Fotografi** (3 immagini, stile dark/silhouette/warm amber):
+1. `src/assets/fotografi-1.jpg` — "Dark cinematic illustration of a photographer shooting a sports car at a racetrack, silhouette with camera, warm amber accent lights, black background"
+2. `src/assets/fotografi-2.jpg` — "Dark minimal illustration of a videographer filming a car event, silhouette with camera gear, warm golden light trails, black background"
+3. `src/assets/fotografi-3.jpg` — "Dark cinematic illustration of photographers collaborating at a car meet, silhouettes with cameras around supercars, ambient warm lighting, black background"
 
-1. `src/assets/selective-1.jpg` — "Dark cinematic illustration of luxury cars lined up on a scenic mountain road at sunset, silhouettes of drivers, warm amber accent lights, black background, exclusive automotive rally atmosphere"
-2. `src/assets/selective-2.jpg` — "Dark minimal illustration of a group driving experience, sports cars in formation on a curated route, warm golden light trails, black background, exclusive club vibe"
-3. `src/assets/selective-3.jpg` — "Dark cinematic illustration of an exclusive automotive networking event, silhouettes of enthusiasts around supercars, ambient warm lighting, black background, premium club atmosphere"
+**Selective Club+**: usa le 3 immagini già generate (selective-1/2/3.jpg)
 
-### Struttura della sezione Selective Club+ in `src/pages/Community.tsx`
+### Distribuzione immagini — Fotografi
 
-Sostituire il contenuto attuale (righe 152-176) con:
+Rimuovere qualsiasi gallery block. Inserire singole immagini full-width (rounded, fadeUp) tra le sezioni:
+- **Immagine 1** → tra Hero e "Cos'è DDMotors"
+- **Immagine 2** → tra "Cosa ottieni" e "La Visione"
+- **Immagine 3** → tra "La Visione" e CTA WhatsApp
 
-1. **Hero** — Logo Crown + titolo "Non partecipare. Vivi." + sottotitolo descrittivo + pulsante "Entra nella community"
-2. **Gallery strip** — 3 immagini generate, disposte in griglia responsive (1 col mobile, 3 col desktop) con bordi arrotondati
-3. **Cosa offriamo** — Griglia di 5 card (stesse animazioni della sezione Fotografi) con le icone:
-   - Flag → Raduni dinamici su percorsi selezionati
-   - Car → Esperienze di guida in gruppo
-   - MapPin → Location e itinerari curati
-   - Target → Eventi organizzati nei dettagli
-   - Users → Networking con appassionati selezionati
-4. **Accesso limitato** — Testo "L'accesso al club è limitato." + sottotesto sulla selezione
-5. **CTA WhatsApp** — Pulsante identico a quello della sezione Fotografi
+### Distribuzione immagini — Selective Club+
 
-### Import aggiuntivi
-- `Flag, MapPin, Target` da lucide-react
-- Le 3 immagini generate
+Rimuovere il blocco gallery (righe 192-208). Inserire singole immagini:
+- **selective-1** → tra Hero e "Cosa offriamo"
+- **selective-2** → tra "Cosa offriamo" e "Accesso limitato"
+- **selective-3** → tra "Accesso limitato" e CTA WhatsApp
+
+### Stile immagine singola (uguale per tutte)
+```jsx
+<section className="section-padding py-8">
+  <motion.div className="max-w-4xl mx-auto" {...fadeUp}>
+    <img src={image} alt="..." className="w-full rounded-lg object-cover h-56 md:h-72" loading="lazy" />
+  </motion.div>
+</section>
+```
+
+### Modifiche in `src/pages/Community.tsx`
+1. Importare le 3 nuove immagini fotografi
+2. Rimuovere il blocco gallery dal Selective Club+
+3. Inserire 6 sezioni immagine singola distribuite come descritto sopra
 
