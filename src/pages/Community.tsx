@@ -163,6 +163,8 @@ const Community = () => {
               </div>
             </section>
 
+            <ImageBreak src={fotografiImages[2]} alt="Fotografi al car meet" />
+
             {/* CTA finale */}
             <section className="section-padding">
               <motion.div className="max-w-2xl mx-auto text-center space-y-6" {...fadeUp}>
