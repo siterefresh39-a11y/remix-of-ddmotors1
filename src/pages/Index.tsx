@@ -6,6 +6,8 @@ import EventDetailDialog from "@/components/EventDetailDialog";
 import { loadEvents } from "@/lib/eventStore";
 import aboutImg from "@/assets/event-3.jpg";
 import heroImage from "@/assets/hero.jpg";
+import communityCover from "@/assets/community-cover.jpg";
+import projectsCover from "@/assets/projects-cover.jpg";
 
 const storeEvents = loadEvents();
 
