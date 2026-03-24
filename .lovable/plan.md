@@ -1,26 +1,26 @@
 
 
-## Piano: Sostituire video hero con immagine
+## Piano: Immagine hero più grande su desktop
 
-### Cosa cambia
+### Problema
+Su mobile l'immagine con `object-contain` va bene (auto visibile per intero). Su desktop però la macchina appare troppo piccola perché `object-contain` lascia molto spazio vuoto.
 
-Sostituire il video di sfondo nella hero section con l'immagine caricata (Chevrolet Tahoe su sfondo nero). L'immagine deve essere full-screen senza crop, specialmente su mobile.
+### Soluzione
+Usare `object-cover` su desktop e `object-contain` solo su mobile:
+- Classe immagine: `object-contain md:object-cover`
 
-### Modifiche
+Questo fa sì che su desktop l'immagine riempia tutta la hero section mostrando la macchina grande, mentre su mobile resta visibile per intero senza crop.
 
-1. **Copiare l'immagine** in `src/assets/hero.jpg`
+### Modifica in `src/pages/Index.tsx`
 
-2. **Eliminare `src/assets/hero.mp4`** per liberare spazio
+**Riga 26** — cambiare la classe dell'`<img>`:
+```
+// Da:
+className="absolute inset-0 w-full h-full object-contain"
 
-3. **`src/pages/Index.tsx`**:
-   - Sostituire `import heroVideo from "@/assets/hero.mp4"` con `import heroImage from "@/assets/hero.jpg"`
-   - Sostituire il tag `<video>` con un `<img>` con classi `absolute inset-0 w-full h-full object-contain` (su tutte le dimensioni, per non tagliare mai l'immagine). Lo sfondo nero della sezione (`bg-black`) colmerà le bande laterali/superiori
-   - Cambiare `bg-background` della section in `bg-black` per coerenza con lo sfondo nero dell'immagine
-   - Ridurre l'overlay da `bg-background/50` a `bg-black/30` per mantenere visibilità
+// A:
+className="absolute inset-0 w-full h-full object-contain md:object-cover"
+```
 
-4. **`src/vite-env.d.ts`**: rimuovere la dichiarazione `*.mp4` (non più necessaria)
-
-### Risultato
-- Desktop: immagine centrata a schermo intero, bande nere sopra/sotto se necessario
-- Mobile: immagine visibile per intero senza crop, formato verticale dell'immagine si adatta bene
+Una sola riga da modificare.
 
