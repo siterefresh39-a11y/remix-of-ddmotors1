@@ -6,6 +6,9 @@ import { Camera, Video, Car, Users, Rocket, Crown, Flag, MapPin, Target } from "
 import selective1 from "@/assets/selective-1.jpg";
 import selective2 from "@/assets/selective-2.jpg";
 import selective3 from "@/assets/selective-3.jpg";
+import fotografi1 from "@/assets/fotografi-1.jpg";
+import fotografi2 from "@/assets/fotografi-2.jpg";
+import fotografi3 from "@/assets/fotografi-3.jpg";
 
 const benefits = [
   { icon: Camera, title: "Condivisione lavori e feedback reali" },
