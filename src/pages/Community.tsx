@@ -2,7 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Video, Car, Users, Rocket, Crown } from "lucide-react";
+import { Camera, Video, Car, Users, Rocket, Crown, Flag, MapPin, Target } from "lucide-react";
+import selective1 from "@/assets/selective-1.jpg";
+import selective2 from "@/assets/selective-2.jpg";
+import selective3 from "@/assets/selective-3.jpg";
 
 const benefits = [
   { icon: Camera, title: "Condivisione lavori e feedback reali" },
@@ -11,6 +14,16 @@ const benefits = [
   { icon: Users, title: "Networking con altri creator" },
   { icon: Rocket, title: "Opportunità per crescere nel settore" },
 ];
+
+const selectiveBenefits = [
+  { icon: Flag, title: "Raduni dinamici su percorsi selezionati", emoji: "🏁" },
+  { icon: Car, title: "Esperienze di guida in gruppo", emoji: "🚗" },
+  { icon: MapPin, title: "Location e itinerari curati", emoji: "📍" },
+  { icon: Target, title: "Eventi organizzati nei dettagli", emoji: "🎯" },
+  { icon: Users, title: "Networking con appassionati selezionati", emoji: "🤝" },
+];
+
+const selectiveImages = [selective1, selective2, selective3];
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -156,22 +169,90 @@ const Community = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
+            {/* Hero */}
             <section className="section-padding min-h-[70vh] flex items-center justify-center text-center">
-              <div className="max-w-3xl mx-auto space-y-8">
-                <Crown className="mx-auto text-primary" size={64} />
-                <h1 className="section-title text-4xl md:text-6xl lg:text-7xl">
-                  SELECTIVE CLUB+
-                </h1>
-                <Badge variant="secondary" className="text-base px-4 py-1.5">
-                  Coming Soon
-                </Badge>
-                <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
-                  Qualcosa di esclusivo sta arrivando. Un'esperienza riservata a chi vuole portare la propria passione al livello successivo.
-                </p>
-                <p className="text-xl md:text-2xl text-primary font-semibold">
-                  Stay tuned.
-                </p>
+              <div className="max-w-4xl mx-auto space-y-6">
+                <motion.div {...fadeUp}>
+                  <Crown className="mx-auto text-primary" size={64} />
+                </motion.div>
+                <motion.h1 className="section-title text-4xl md:text-6xl lg:text-7xl" {...fadeUp} transition={{ duration: 0.6, delay: 0.1 }}>
+                  Non partecipare. Vivi.
+                </motion.h1>
+                <motion.p className="section-subtitle text-base md:text-xl max-w-2xl mx-auto" {...fadeUp} transition={{ duration: 0.6, delay: 0.2 }}>
+                  DDMotors Selective Club è la divisione dedicata ai raduni dinamici e alle esperienze automotive esclusive.
+                </motion.p>
+                <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }}>
+                  <Button size="lg" asChild>
+                    <a href="#">Entra nella community</a>
+                  </Button>
+                </motion.div>
               </div>
+            </section>
+
+            {/* Gallery */}
+            <section className="section-padding">
+              <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
+                {selectiveImages.map((img, i) => (
+                  <motion.div
+                    key={i}
+                    className="overflow-hidden rounded-lg"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: i * 0.15 }}
+                  >
+                    <img src={img} alt={`Selective Club ${i + 1}`} loading="lazy" width={1024} height={640} className="w-full h-48 md:h-56 object-cover" />
+                  </motion.div>
+                ))}
+              </div>
+            </section>
+
+            {/* Cosa offriamo */}
+            <section className="section-padding">
+              <div className="max-w-5xl mx-auto">
+                <motion.h2 className="section-title text-3xl md:text-5xl text-center mb-12" {...fadeUp}>
+                  COSA OFFRIAMO
+                </motion.h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  {selectiveBenefits.map((b, i) => (
+                    <motion.div
+                      key={b.title}
+                      className="group rounded-lg border border-border bg-card p-5 sm:p-6 flex items-center sm:items-start gap-4 cursor-default transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                    >
+                      <b.icon className="text-primary shrink-0 transition-transform duration-300 group-hover:scale-110" size={24} />
+                      <span className="text-foreground text-sm sm:text-base md:text-lg font-medium">{b.title}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Accesso limitato */}
+            <section className="section-padding">
+              <div className="max-w-3xl mx-auto text-center space-y-4">
+                <motion.p className="text-2xl md:text-3xl font-bold text-foreground" {...fadeUp}>
+                  L'accesso al club è limitato.
+                </motion.p>
+                <motion.p className="text-lg md:text-xl text-muted-foreground" {...fadeUp} transition={{ duration: 0.6, delay: 0.1 }}>
+                  Selezioniamo i partecipanti per garantire qualità, sicurezza e un'esperienza reale.
+                </motion.p>
+              </div>
+            </section>
+
+            {/* CTA WhatsApp */}
+            <section className="section-padding">
+              <motion.div className="max-w-2xl mx-auto text-center space-y-6" {...fadeUp}>
+                <p className="text-lg md:text-xl text-muted-foreground">
+                  Vuoi far parte del Selective Club?
+                </p>
+                <Button size="lg" asChild>
+                  <a href="#">👉 Entra nel gruppo WhatsApp</a>
+                </Button>
+              </motion.div>
             </section>
           </motion.div>
         )}
