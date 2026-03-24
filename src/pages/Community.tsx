@@ -2,7 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Camera, Video, Car, Users, Rocket, Crown } from "lucide-react";
+import { Camera, Video, Car, Users, Rocket, Crown, Flag, MapPin, Target } from "lucide-react";
+import selective1 from "@/assets/selective-1.jpg";
+import selective2 from "@/assets/selective-2.jpg";
+import selective3 from "@/assets/selective-3.jpg";
 
 const benefits = [
   { icon: Camera, title: "Condivisione lavori e feedback reali" },
@@ -11,6 +14,16 @@ const benefits = [
   { icon: Users, title: "Networking con altri creator" },
   { icon: Rocket, title: "Opportunità per crescere nel settore" },
 ];
+
+const selectiveBenefits = [
+  { icon: Flag, title: "Raduni dinamici su percorsi selezionati", emoji: "🏁" },
+  { icon: Car, title: "Esperienze di guida in gruppo", emoji: "🚗" },
+  { icon: MapPin, title: "Location e itinerari curati", emoji: "📍" },
+  { icon: Target, title: "Eventi organizzati nei dettagli", emoji: "🎯" },
+  { icon: Users, title: "Networking con appassionati selezionati", emoji: "🤝" },
+];
+
+const selectiveImages = [selective1, selective2, selective3];
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
