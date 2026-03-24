@@ -1,45 +1,28 @@
 
 
-## Piano: Immagini distribuite nel testo per entrambe le sezioni
+## Piano: Migliorare estetica pulsanti WhatsApp
 
 ### Cosa cambia
 
-Invece di raggruppare le immagini in un unico blocco gallery, distribuirle strategicamente tra le sezioni di testo sia in **Fotografi** che in **Selective Club+**.
-
-### Immagini da generare (6 totali)
-
-**Fotografi** (3 immagini, stile dark/silhouette/warm amber):
-1. `src/assets/fotografi-1.jpg` — "Dark cinematic illustration of a photographer shooting a sports car at a racetrack, silhouette with camera, warm amber accent lights, black background"
-2. `src/assets/fotografi-2.jpg` — "Dark minimal illustration of a videographer filming a car event, silhouette with camera gear, warm golden light trails, black background"
-3. `src/assets/fotografi-3.jpg` — "Dark cinematic illustration of photographers collaborating at a car meet, silhouettes with cameras around supercars, ambient warm lighting, black background"
-
-**Selective Club+**: usa le 3 immagini già generate (selective-1/2/3.jpg)
-
-### Distribuzione immagini — Fotografi
-
-Rimuovere qualsiasi gallery block. Inserire singole immagini full-width (rounded, fadeUp) tra le sezioni:
-- **Immagine 1** → tra Hero e "Cos'è DDMotors"
-- **Immagine 2** → tra "Cosa ottieni" e "La Visione"
-- **Immagine 3** → tra "La Visione" e CTA WhatsApp
-
-### Distribuzione immagini — Selective Club+
-
-Rimuovere il blocco gallery (righe 192-208). Inserire singole immagini:
-- **selective-1** → tra Hero e "Cosa offriamo"
-- **selective-2** → tra "Cosa offriamo" e "Accesso limitato"
-- **selective-3** → tra "Accesso limitato" e CTA WhatsApp
-
-### Stile immagine singola (uguale per tutte)
-```jsx
-<section className="section-padding py-8">
-  <motion.div className="max-w-4xl mx-auto" {...fadeUp}>
-    <img src={image} alt="..." className="w-full rounded-lg object-cover h-56 md:h-72" loading="lazy" />
-  </motion.div>
-</section>
-```
+Sostituire i due `<Button>` WhatsApp con lo stesso stile del pulsante "Vedi tutte le foto" della galleria: un link inline con sfondo primary, font display, tracking wider, bordi arrotondati, e transizione hover.
 
 ### Modifiche in `src/pages/Community.tsx`
-1. Importare le 3 nuove immagini fotografi
-2. Rimuovere il blocco gallery dal Selective Club+
-3. Inserire 6 sezioni immagine singola distribuite come descritto sopra
+
+**Riga 174-176** (Fotografi) — da:
+```jsx
+<Button size="lg" asChild>
+  <a href="#">👉 Entra nel canale WhatsApp</a>
+</Button>
+```
+a:
+```jsx
+<a href="#" target="_blank" rel="noopener noreferrer"
+   className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display tracking-wider text-sm md:text-base hover:bg-primary/90 transition-colors rounded">
+  👉 Entra nel canale WhatsApp <ExternalLink size={16} />
+</a>
+```
+
+**Riga 256-258** (Selective Club+) — stessa trasformazione con "Entra nel gruppo WhatsApp".
+
+Aggiungere `ExternalLink` all'import da lucide-react (se non già presente).
 
