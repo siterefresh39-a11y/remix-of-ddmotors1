@@ -132,8 +132,8 @@ const Index = () => {
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {[
-              { to: "/community", title: "COMMUNITY", desc: "Entra nella nostra community e condividi la tua passione.", img: aboutImg },
-              { to: "/progetti", title: "PROGETTI", desc: "Scopri i progetti a cui stiamo lavorando.", img: aboutImg },
+              { to: "/community", title: "COMMUNITY", desc: "Entra nella nostra community e condividi la tua passione.", img: communityCover },
+              { to: "/progetti", title: "PROGETTI", desc: "Scopri i progetti a cui stiamo lavorando.", img: projectsCover },
             ].map((card, i) => (
               <motion.div
                 key={card.to}
