@@ -23,7 +23,7 @@ const Index = () => {
         <img
           src={heroImage}
           alt="DDMotors Hero"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-full h-full object-contain md:object-cover"
         />
 
         {/* Dark overlay */}
