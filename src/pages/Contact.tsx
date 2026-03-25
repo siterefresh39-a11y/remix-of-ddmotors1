@@ -165,10 +165,11 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full md:w-auto font-display text-sm tracking-widest uppercase bg-foreground text-background px-10 py-4 hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3"
+              disabled={sending}
+              className="w-full md:w-auto font-display text-sm tracking-widest uppercase bg-foreground text-background px-10 py-4 hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Send size={16} />
-              Invia messaggio
+              {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+              {sending ? "Invio in corso..." : "Invia messaggio"}
             </button>
             {sent && (
               <motion.p
