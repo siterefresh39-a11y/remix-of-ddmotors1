@@ -1,27 +1,52 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Mail, Send } from "lucide-react";
+import { Instagram, Mail, Send, Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const [privacyRead, setPrivacyRead] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [privacyError, setPrivacyError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!privacyAccepted) {
       setPrivacyError(true);
       return;
     }
     setPrivacyError(false);
-    setSent(true);
-    setForm({ name: "", email: "", message: "" });
-    setPrivacyAccepted(false);
-    setPrivacyRead(false);
-    setTimeout(() => setSent(false), 3000);
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        "service_jbkce5p",
+        "template_6fwoxvi",
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        "WTqSiaiPQLg4l4hz8"
+      );
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+      setPrivacyAccepted(false);
+      setPrivacyRead(false);
+      setTimeout(() => setSent(false), 3000);
+    } catch (error) {
+      toast({
+        title: "Errore",
+        description: "Invio fallito. Riprova più tardi.",
+        variant: "destructive",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   const handlePrivacyLinkClick = () => {
