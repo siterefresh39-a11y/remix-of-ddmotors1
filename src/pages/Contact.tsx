@@ -37,6 +37,10 @@ const Contact = () => {
       setForm({ name: "", email: "", message: "" });
       setPrivacyAccepted(false);
       setPrivacyRead(false);
+      toast({
+        title: "✅ Messaggio inviato!",
+        description: "Ti risponderemo il prima possibile.",
+      });
       setTimeout(() => setSent(false), 3000);
     } catch (error) {
       toast({
@@ -51,7 +55,8 @@ const Contact = () => {
 
   const handlePrivacyLinkClick = () => {
     setPrivacyRead(true);
-    window.open("/privacy", "_blank");
+    const base = import.meta.env.PROD ? '/remix-of-ddmotors1' : '';
+    window.open(`${base}/privacy`, "_blank");
   };
 
   return (

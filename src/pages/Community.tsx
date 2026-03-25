@@ -95,7 +95,7 @@ const Community = () => {
                 </motion.p>
                 <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }}>
                   <Button size="lg" asChild>
-                    <a href="#">Entra nella community</a>
+                    <a href="https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t" target="_blank" rel="noopener noreferrer">Entra nella community</a>
                   </Button>
                 </motion.div>
               </div>
@@ -200,7 +200,7 @@ const Community = () => {
                 </motion.p>
                 <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.3 }}>
                   <Button size="lg" asChild>
-                    <a href="#">Entra nella community</a>
+                    <a href="https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t" target="_blank" rel="noopener noreferrer">Entra nella community</a>
                   </Button>
                 </motion.div>
               </div>
@@ -254,7 +254,7 @@ const Community = () => {
                 <p className="text-lg md:text-xl text-muted-foreground">
                   Vuoi far parte del Selective Club?
                 </p>
-                <a href="#" target="_blank" rel="noopener noreferrer"
+                <a href="https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t" target="_blank" rel="noopener noreferrer"
                    className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display tracking-wider text-sm md:text-base hover:bg-primary/90 transition-colors rounded">
                   👉 Entra nel gruppo WhatsApp <ExternalLink size={16} />
                 </a>
