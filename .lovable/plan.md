@@ -1,24 +1,31 @@
 
 
-## Piano di correzione - 3 problemi
+## Aggiunta evento "SUNSET DRIVE" — Piano aggiornato
 
-### 1. Link privacy nella pagina Contatti non funziona
-Il link "informativa privacy" in `handlePrivacyLinkClick` apre `/privacy` senza il `basename` del router (`/remix-of-ddmotors1` in produzione). Va corretto usando il basename corretto.
+Includendo mappa, calendario e tag DDMOTORS DRIVE come richiesto.
 
-**File**: `src/pages/Contact.tsx`
-- Cambiare `window.open("/privacy", "_blank")` per includere il basename in produzione: `window.open(\`${import.meta.env.PROD ? '/remix-of-ddmotors1' : ''}/privacy\`, "_blank")`
+### Modifiche
 
-### 2. Conferma invio messaggio più visibile
-Attualmente il messaggio "Messaggio inviato!" appare come testo piccolo sotto il bottone. Lo renderemo più evidente con un toast di successo.
+**1. Copiare immagini in `src/assets/`**
+- `locandina.jpeg` → `sunset-drive-cover.jpeg`
+- 4 foto galleria → `sunset-1.jpeg`, `sunset-2.jpeg`, `sunset-3.jpeg`, `sunset-4.jpeg`
 
-**File**: `src/pages/Contact.tsx`
-- Aggiungere un `toast` di successo dopo l'invio (es. "Messaggio inviato! Ti risponderemo presto.")
-- Mantenere anche il feedback visivo inline
+**2. `src/lib/eventStore.ts`**
+- Import delle 5 nuove immagini
+- Aggiungere `ev7` in prima posizione nell'array `defaultEvents`:
+  - Titolo: "SUNSET DRIVE"
+  - Data: "21 Marzo 2026"
+  - Status: "Prossimo"
+  - Tag: **"DDMOTORS DRIVE"**
+  - Location: "Lungolago Laveno"
+  - Coords: **[45.9042, 8.6156]** (Laveno-Mombello) — visibile su mappa e calendario
+- Aggiungere 4 foto in `defaultPhotos` con `eventId: "ev7"`
 
-### 3. Pulsanti WhatsApp nella pagina Community
-Attualmente il pulsante "Entra nella community" in cima a entrambe le sezioni ha `href="#"` (non funziona). Sia per Fotografi che per Selective Club, il primo e l'ultimo pulsante devono portare al link WhatsApp.
+**3. `src/pages/Index.tsx`**
+- Mostrare solo i primi 3 eventi nella homepage (ev7, ev6, ev5) — escludendo "Cars & Bikes" (ev4) dalla sezione "PROSSIMI EVENTI"
 
-**File**: `src/pages/Community.tsx`
-- **Fotografi**: Cambiare il bottone hero (riga 98) da `href="#"` al link WhatsApp `https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t` (stesso dell'ultimo)
-- **Selective Club**: Cambiare il bottone hero (riga 202-204) da `href="#"` al link WhatsApp. Anche il bottone finale (riga 257) ha `href="#"` — va aggiunto un link WhatsApp (serve un link specifico per Selective, oppure uso lo stesso dei Fotografi)
+**4. `src/components/EventDetailDialog.tsx`**
+- Aggiungere blocco per `ev7` con locandina, info evento (data, luogo, cena, collab @selectivesocial.club x @dd.motors_official)
+
+**Risultato**: L'evento apparira automaticamente nella mappa interattiva del Calendario con il pin a Laveno, filtrato sotto "DDMOTORS DRIVE", e sincronizzato con la lista eventi.
 
