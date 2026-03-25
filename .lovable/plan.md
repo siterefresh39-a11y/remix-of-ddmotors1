@@ -1,31 +1,21 @@
 
 
-## Aggiunta evento "SUNSET DRIVE" — Piano aggiornato
+## Sostituzione immagine hero nella pagina Chi Siamo
 
-Includendo mappa, calendario e tag DDMOTORS DRIVE come richiesto.
+### Cosa faremo
+Useremo l'AI di generazione immagini (Nano banana) per creare una vista frontale del Chevrolet Tahoe partendo dalla foto caricata, su sfondo nero. L'immagine generata sostituirà l'attuale `about-hero.jpg` nella sezione hero della pagina "Chi siamo".
 
-### Modifiche
+### Modifiche tecniche
 
-**1. Copiare immagini in `src/assets/`**
-- `locandina.jpeg` → `sunset-drive-cover.jpeg`
-- 4 foto galleria → `sunset-1.jpeg`, `sunset-2.jpeg`, `sunset-3.jpeg`, `sunset-4.jpeg`
+**1. Generare l'immagine frontale**
+- Usare l'API Gemini image editing con l'immagine caricata come input
+- Prompt: generare una vista frontale drammatica della stessa auto, sfondo nero, stile cinematografico
+- Salvare il risultato come `src/assets/about-hero-tahoe.jpg`
 
-**2. `src/lib/eventStore.ts`**
-- Import delle 5 nuove immagini
-- Aggiungere `ev7` in prima posizione nell'array `defaultEvents`:
-  - Titolo: "SUNSET DRIVE"
-  - Data: "21 Marzo 2026"
-  - Status: "Prossimo"
-  - Tag: **"DDMOTORS DRIVE"**
-  - Location: "Lungolago Laveno"
-  - Coords: **[45.9042, 8.6156]** (Laveno-Mombello) — visibile su mappa e calendario
-- Aggiungere 4 foto in `defaultPhotos` con `eventId: "ev7"`
-
-**3. `src/pages/Index.tsx`**
-- Mostrare solo i primi 3 eventi nella homepage (ev7, ev6, ev5) — escludendo "Cars & Bikes" (ev4) dalla sezione "PROSSIMI EVENTI"
-
-**4. `src/components/EventDetailDialog.tsx`**
-- Aggiungere blocco per `ev7` con locandina, info evento (data, luogo, cena, collab @selectivesocial.club x @dd.motors_official)
-
-**Risultato**: L'evento apparira automaticamente nella mappa interattiva del Calendario con il pin a Laveno, filtrato sotto "DDMOTORS DRIVE", e sincronizzato con la lista eventi.
+**2. Aggiornare `src/pages/About.tsx`**
+- Cambiare l'import da `about-hero.jpg` a `about-hero-tahoe.jpg`
+- Adattare le classi CSS dell'immagine hero per funzionare bene sia su mobile che desktop:
+  - Mobile: `object-contain` per mostrare l'auto intera senza ritagli (stesso approccio della homepage)
+  - Desktop: `object-cover` per effetto a tutto schermo
+  - Sfondo nero sulla sezione per riempire eventuali margini
 
