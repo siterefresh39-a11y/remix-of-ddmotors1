@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Mail, Send, Loader2 } from "lucide-react";
+import { Instagram, Mail, Send, Loader2, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -12,6 +18,7 @@ const Contact = () => {
   const [privacyRead, setPrivacyRead] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [privacyError, setPrivacyError] = useState(false);
+  const [privacyOpen, setPrivacyOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,9 +61,12 @@ const Contact = () => {
   };
 
   const handlePrivacyLinkClick = () => {
+    setPrivacyOpen(true);
+  };
+
+  const handlePrivacyConfirm = () => {
     setPrivacyRead(true);
-    const base = import.meta.env.PROD ? '/remix-of-ddmotors1' : '';
-    window.open(`${base}/privacy`, "_blank");
+    setPrivacyOpen(false);
   };
 
   return (
@@ -206,6 +216,52 @@ const Contact = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Privacy Dialog */}
+      <Dialog open={privacyOpen} onOpenChange={setPrivacyOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-background border-border">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl tracking-widest uppercase">
+              INFORMATIVA PRIVACY
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-6 font-body text-foreground/80 text-sm leading-relaxed mt-4">
+            <div>
+              <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Titolare del trattamento</h3>
+              <p>Devis degli Esposti — ddmotorsofficial@gmail.com</p>
+            </div>
+            <div>
+              <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Dati raccolti</h3>
+              <p>Attraverso il modulo di contatto raccogliamo esclusivamente il tuo <strong>nome</strong> e il tuo <strong>indirizzo email</strong>.</p>
+            </div>
+            <div>
+              <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Finalità</h3>
+              <p>I dati vengono utilizzati esclusivamente per rispondere alla tua richiesta di contatto.</p>
+            </div>
+            <div>
+              <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Conservazione</h3>
+              <p>I dati vengono conservati solo per il tempo strettamente necessario a rispondere alla tua richiesta e vengono successivamente eliminati.</p>
+            </div>
+            <div>
+              <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Diritti dell'interessato</h3>
+              <p>Puoi esercitare i tuoi diritti (accesso, rettifica, cancellazione, opposizione) in qualsiasi momento scrivendo a ddmotorsofficial@gmail.com.</p>
+            </div>
+            <div>
+              <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Base giuridica</h3>
+              <p>Il trattamento è basato sul tuo consenso, espresso tramite la spunta nel modulo di contatto (art. 6, par. 1, lett. a del GDPR).</p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={handlePrivacyConfirm}
+            className="w-full mt-6 font-display text-sm tracking-widest uppercase bg-foreground text-background px-8 py-4 hover:bg-foreground/90 transition-colors"
+          >
+            HO LETTO L'INFORMATIVA
+          </button>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
