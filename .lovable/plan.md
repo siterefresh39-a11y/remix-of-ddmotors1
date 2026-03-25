@@ -1,28 +1,29 @@
 
 
-## Piano: Migliorare estetica pulsanti WhatsApp
+## Integrazione EmailJS nel modulo contatti
 
-### Cosa cambia
+**Cosa faremo**: Quando un utente compila il form nella pagina Contatti e clicca "Invia", il messaggio arriverà direttamente alla tua email tramite EmailJS.
 
-Sostituire i due `<Button>` WhatsApp con lo stesso stile del pulsante "Vedi tutte le foto" della galleria: un link inline con sfondo primary, font display, tracking wider, bordi arrotondati, e transizione hover.
+**Credenziali da usare** (pubbliche, sicure da inserire nel codice):
+- Service ID: `service_jbkce5p`
+- Template ID: `template_6fwoxvi`
+- Public Key: `WTqSiaiPQLg4l4hz8`
 
-### Modifiche in `src/pages/Community.tsx`
+---
 
-**Riga 174-176** (Fotografi) — da:
-```jsx
-<Button size="lg" asChild>
-  <a href="#">👉 Entra nel canale WhatsApp</a>
-</Button>
-```
-a:
-```jsx
-<a href="#" target="_blank" rel="noopener noreferrer"
-   className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display tracking-wider text-sm md:text-base hover:bg-primary/90 transition-colors rounded">
-  👉 Entra nel canale WhatsApp <ExternalLink size={16} />
-</a>
-```
+### Modifiche tecniche
 
-**Riga 256-258** (Selective Club+) — stessa trasformazione con "Entra nel gruppo WhatsApp".
+**1. Installare il pacchetto `@emailjs/browser`**
 
-Aggiungere `ExternalLink` all'import da lucide-react (se non già presente).
+**2. Aggiornare `src/pages/Contact.tsx`**
+- Importare `emailjs` da `@emailjs/browser`
+- Aggiungere stato `sending` per disabilitare il bottone durante l'invio
+- Rendere `handleSubmit` asincrono: chiamare `emailjs.send()` con i parametri `name`, `email`, `message`
+- Gestire successo (mostra conferma) e errore (mostra messaggio di errore con toast)
+- Il bottone mostrerà "Invio in corso..." mentre si invia
+
+**Variabili del template** mappate così:
+- `{{name}}` ← campo Nome
+- `{{email}}` ← campo Email  
+- `{{message}}` ← campo Messaggio
 
