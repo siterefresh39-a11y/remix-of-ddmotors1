@@ -1,21 +1,26 @@
 
 
-## Sostituzione immagine hero nella pagina Chi Siamo
+## Pulizia codebase — Solo rimozione file inutilizzati (zero impatto visivo)
 
-### Cosa faremo
-Useremo l'AI di generazione immagini (Nano banana) per creare una vista frontale del Chevrolet Tahoe partendo dalla foto caricata, su sfondo nero. L'immagine generata sostituirà l'attuale `about-hero.jpg` nella sezione hero della pagina "Chi siamo".
+Nessuna modifica estetica o funzionale. Solo eliminazione di file morti e un import inutilizzato.
 
-### Modifiche tecniche
+### Modifiche
 
-**1. Generare l'immagine frontale**
-- Usare l'API Gemini image editing con l'immagine caricata come input
-- Prompt: generare una vista frontale drammatica della stessa auto, sfondo nero, stile cinematografico
-- Salvare il risultato come `src/assets/about-hero-tahoe.jpg`
+**1. Eliminare 7 immagini non referenziate da nessun file**
+- `about-hero.jpg` (sostituita da `about-hero-tahoe.jpg`)
+- `hero-headlights.jpg`
+- `ddnight-5.jpg`
+- `gallery-1.jpg`, `gallery-2.jpg`, `gallery-3.jpg`, `gallery-4.jpg`
 
-**2. Aggiornare `src/pages/About.tsx`**
-- Cambiare l'import da `about-hero.jpg` a `about-hero-tahoe.jpg`
-- Adattare le classi CSS dell'immagine hero per funzionare bene sia su mobile che desktop:
-  - Mobile: `object-contain` per mostrare l'auto intera senza ritagli (stesso approccio della homepage)
-  - Desktop: `object-cover` per effetto a tutto schermo
-  - Sfondo nero sulla sezione per riempire eventuali margini
+Queste immagini non sono importate da nessun componente — rimuoverle non cambia nulla sul sito.
+
+**2. Rimuovere import morto in `src/pages/Contact.tsx`**
+- Togliere `X` dalla riga di import di lucide-react (non è più usato dopo la modifica al dialog privacy)
+
+**Cosa NON tocchiamo:**
+- Nessun componente UI
+- Nessuna pagina
+- Nessuno stile CSS
+- Nessuna immagine attualmente visibile
+- Nessuna conversione di formato (la cover SUNSET DRIVE resta jpeg)
 
