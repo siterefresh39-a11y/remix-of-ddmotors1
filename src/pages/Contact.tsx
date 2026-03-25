@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Mail, Send, Loader2, X } from "lucide-react";
+import { Instagram, Mail, Send, Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
