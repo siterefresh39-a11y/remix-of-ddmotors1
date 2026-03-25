@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
-import aboutHero from "@/assets/about-hero.jpg";
+import aboutHero from "@/assets/about-hero-tahoe.jpg";
 import event1 from "@/assets/event-1.jpg";
 
 const About = () => {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden flex items-end">
-        <img src={aboutHero} alt="DDMotors auto" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover" />
+      <section className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden flex items-end bg-black">
+        <img src={aboutHero} alt="DDMotors auto" width={1920} height={1080} className="absolute inset-0 w-full h-full object-contain md:object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="relative z-10 section-padding pb-12 md:pb-20">
           <motion.h1
