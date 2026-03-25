@@ -1,29 +1,24 @@
 
 
-## Integrazione EmailJS nel modulo contatti
+## Piano di correzione - 3 problemi
 
-**Cosa faremo**: Quando un utente compila il form nella pagina Contatti e clicca "Invia", il messaggio arriverà direttamente alla tua email tramite EmailJS.
+### 1. Link privacy nella pagina Contatti non funziona
+Il link "informativa privacy" in `handlePrivacyLinkClick` apre `/privacy` senza il `basename` del router (`/remix-of-ddmotors1` in produzione). Va corretto usando il basename corretto.
 
-**Credenziali da usare** (pubbliche, sicure da inserire nel codice):
-- Service ID: `service_jbkce5p`
-- Template ID: `template_6fwoxvi`
-- Public Key: `WTqSiaiPQLg4l4hz8`
+**File**: `src/pages/Contact.tsx`
+- Cambiare `window.open("/privacy", "_blank")` per includere il basename in produzione: `window.open(\`${import.meta.env.PROD ? '/remix-of-ddmotors1' : ''}/privacy\`, "_blank")`
 
----
+### 2. Conferma invio messaggio più visibile
+Attualmente il messaggio "Messaggio inviato!" appare come testo piccolo sotto il bottone. Lo renderemo più evidente con un toast di successo.
 
-### Modifiche tecniche
+**File**: `src/pages/Contact.tsx`
+- Aggiungere un `toast` di successo dopo l'invio (es. "Messaggio inviato! Ti risponderemo presto.")
+- Mantenere anche il feedback visivo inline
 
-**1. Installare il pacchetto `@emailjs/browser`**
+### 3. Pulsanti WhatsApp nella pagina Community
+Attualmente il pulsante "Entra nella community" in cima a entrambe le sezioni ha `href="#"` (non funziona). Sia per Fotografi che per Selective Club, il primo e l'ultimo pulsante devono portare al link WhatsApp.
 
-**2. Aggiornare `src/pages/Contact.tsx`**
-- Importare `emailjs` da `@emailjs/browser`
-- Aggiungere stato `sending` per disabilitare il bottone durante l'invio
-- Rendere `handleSubmit` asincrono: chiamare `emailjs.send()` con i parametri `name`, `email`, `message`
-- Gestire successo (mostra conferma) e errore (mostra messaggio di errore con toast)
-- Il bottone mostrerà "Invio in corso..." mentre si invia
-
-**Variabili del template** mappate così:
-- `{{name}}` ← campo Nome
-- `{{email}}` ← campo Email  
-- `{{message}}` ← campo Messaggio
+**File**: `src/pages/Community.tsx`
+- **Fotografi**: Cambiare il bottone hero (riga 98) da `href="#"` al link WhatsApp `https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t` (stesso dell'ultimo)
+- **Selective Club**: Cambiare il bottone hero (riga 202-204) da `href="#"` al link WhatsApp. Anche il bottone finale (riga 257) ha `href="#"` — va aggiunto un link WhatsApp (serve un link specifico per Selective, oppure uso lo stesso dei Fotografi)
 
