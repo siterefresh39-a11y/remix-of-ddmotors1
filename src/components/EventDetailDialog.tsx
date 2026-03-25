@@ -204,7 +204,7 @@ Un evento a numero chiuso per garantire un'esperienza esclusiva e indimenticabil
               </a>
             </div>
           </>
-        )
+        )}
       </DialogContent>
     </Dialog>
   );
