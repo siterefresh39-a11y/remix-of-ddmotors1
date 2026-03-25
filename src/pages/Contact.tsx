@@ -1,27 +1,52 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Mail, Send } from "lucide-react";
+import { Instagram, Mail, Send, Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const [privacyRead, setPrivacyRead] = useState(false);
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [privacyError, setPrivacyError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!privacyAccepted) {
       setPrivacyError(true);
       return;
     }
     setPrivacyError(false);
-    setSent(true);
-    setForm({ name: "", email: "", message: "" });
-    setPrivacyAccepted(false);
-    setPrivacyRead(false);
-    setTimeout(() => setSent(false), 3000);
+    setSending(true);
+
+    try {
+      await emailjs.send(
+        "service_jbkce5p",
+        "template_6fwoxvi",
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        },
+        "WTqSiaiPQLg4l4hz8"
+      );
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+      setPrivacyAccepted(false);
+      setPrivacyRead(false);
+      setTimeout(() => setSent(false), 3000);
+    } catch (error) {
+      toast({
+        title: "Errore",
+        description: "Invio fallito. Riprova più tardi.",
+        variant: "destructive",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   const handlePrivacyLinkClick = () => {
@@ -140,10 +165,11 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full md:w-auto font-display text-sm tracking-widest uppercase bg-foreground text-background px-10 py-4 hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3"
+              disabled={sending}
+              className="w-full md:w-auto font-display text-sm tracking-widest uppercase bg-foreground text-background px-10 py-4 hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Send size={16} />
-              Invia messaggio
+              {sending ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+              {sending ? "Invio in corso..." : "Invia messaggio"}
             </button>
             {sent && (
               <motion.p
