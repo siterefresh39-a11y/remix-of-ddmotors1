@@ -15,7 +15,7 @@ const Index = () => {
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
 
   // Build homepage events from store
-  const events = storeEvents.map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date }));
+  const events = storeEvents.slice(0, 3).map((e) => ({ id: e.id, img: e.img, title: e.title, desc: e.desc, date: e.date }));
 
   return (
     <>
