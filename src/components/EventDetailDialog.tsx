@@ -170,6 +170,41 @@ INFO E DETTAGLI SUL NOSTRO PROFILO`}
             </div>
           </>
         )}
+        {event?.id === "ev7" && (
+          <>
+            <img src={event.img} alt={event.title} className="w-full object-cover" width={672} height={448} />
+            <div className="p-6 md:p-8 space-y-4">
+              <h2 className="font-display text-2xl md:text-3xl tracking-wider text-foreground">
+                SUNSET DRIVE
+              </h2>
+              <h3 className="font-display text-lg md:text-xl tracking-wider text-foreground/90">
+                @selectivesocial.club x @dd.motors_official
+              </h3>
+              <p className="text-foreground/80 font-body text-sm leading-relaxed whitespace-pre-line">
+{`Un'esperienza unica: guida al tramonto sulle strade panoramiche del Lago Maggiore, con arrivo sul Lungolago di Laveno per una cena esclusiva.
+
+📅 Sabato 21 Marzo 2026
+📍 Lungolago Laveno
+🍽 With Dinner
+
+POSTI LIMITATI ⚠️
+
+Un evento a numero chiuso per garantire un'esperienza esclusiva e indimenticabile.
+
+📲 Per info e iscrizioni scrivici in DM o prenota tramite il sito`}
+              </p>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
+              >
+                Clicca qui per iscrivere la tua auto
+                <ExternalLink size={14} />
+              </a>
+            </div>
+          </>
+        )
       </DialogContent>
     </Dialog>
   );
