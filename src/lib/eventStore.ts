@@ -16,6 +16,12 @@ import motta1 from "@/assets/motta-1.jpg";
 import motta2 from "@/assets/motta-2.jpg";
 import motta3 from "@/assets/motta-3.jpg";
 
+import sunsetCover from "@/assets/sunset-drive-cover.jpeg";
+import sunset1 from "@/assets/sunset-1.jpeg";
+import sunset2 from "@/assets/sunset-2.jpeg";
+import sunset3 from "@/assets/sunset-3.jpeg";
+import sunset4 from "@/assets/sunset-4.jpeg";
+
 // ── Tag system ──
 export const EVENT_TAGS = [
   "DDMOTORS NIGHT",
@@ -50,12 +56,17 @@ export interface PhotoItem {
 
 // ── Default data (ev5 first = more recent) ──
 export const defaultEvents: EventItem[] = [
+  { id: "ev7", img: sunsetCover, title: "SUNSET DRIVE", desc: "Guida al tramonto con cena sul Lungolago di Laveno", date: "21 Marzo 2026", status: "Prossimo", tag: "DDMOTORS DRIVE", location: "Lungolago Laveno", coords: [45.9042, 8.6156] },
   { id: "ev6", img: mottaDriveCover, title: "MOTTA DRIVE", desc: "Un'esperienza di guida pensata per veri appassionati sul Passo del Mottarone", date: "15 Febbraio 2025", status: "Passato", tag: "DDMOTORS DRIVE", location: "Passo del Mottarone", coords: [45.8742, 8.4428] },
   { id: "ev5", img: locandinaNight, title: "1ST \"DDMOTORS NIGHT\"", desc: "Serata evento: un connubio tra auto e raffinatezza", date: "20th February 2026", status: "Passato", tag: "DDMOTORS NIGHT", location: "Bareggio (MI)", allPhotosLink: "https://example.com/ddmotors-night-photos", coords: [45.4215, 8.9935] },
   { id: "ev4", img: carsBikesCover, title: "1ST \"CARS & BIKES MEETING\"", desc: "Imponente raduno di ogni genere di auto, una serata incredibile", date: "DECEMBER 12TH 2025", status: "Passato", tag: "DDMOTORS RADUNI", location: "Trezzano sul Naviglio (MI)", allPhotosLink: "", coords: [45.4213, 9.0674] },
 ];
 
 const defaultPhotos: PhotoItem[] = [
+  { id: "ph19", src: sunset1, alt: "Auto al tramonto sul Lungolago di Laveno", eventId: "ev7", date: "21 Marzo 2026" },
+  { id: "ph20", src: sunset2, alt: "Convoglio auto al tramonto Laveno", eventId: "ev7", date: "21 Marzo 2026" },
+  { id: "ph21", src: sunset3, alt: "Vista panoramica Lungolago Laveno", eventId: "ev7", date: "21 Marzo 2026" },
+  { id: "ph22", src: sunset4, alt: "Gruppo auto parcheggiate Laveno", eventId: "ev7", date: "21 Marzo 2026" },
   { id: "ph16", src: motta1, alt: "Audi e Abarth al tramonto sul Mottarone", eventId: "ev6", date: "15 Febbraio 2025" },
   { id: "ph17", src: motta2, alt: "Auto parcheggiate in cima al Mottarone", eventId: "ev6", date: "15 Febbraio 2025" },
   { id: "ph18", src: motta3, alt: "Mappa percorso Drive to Mottarone", eventId: "ev6", date: "15 Febbraio 2025" },
