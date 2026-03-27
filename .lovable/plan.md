@@ -1,26 +1,20 @@
 
 
-## Pulizia codebase — Solo rimozione file inutilizzati (zero impatto visivo)
+## Pop-up "Evento già passato" per i pulsanti di iscrizione
 
-Nessuna modifica estetica o funzionale. Solo eliminazione di file morti e un import inutilizzato.
+### Cosa cambia
+Quando clicchi "Clicca qui per iscrivere la tua auto" su un evento passato, invece di non fare nulla apparirà un pop-up che dice che l'evento è già passato. Per eventi futuri il link funzionerà normalmente.
 
-### Modifiche
+### Dettagli tecnici
 
-**1. Eliminare 7 immagini non referenziate da nessun file**
-- `about-hero.jpg` (sostituita da `about-hero-tahoe.jpg`)
-- `hero-headlights.jpg`
-- `ddnight-5.jpg`
-- `gallery-1.jpg`, `gallery-2.jpg`, `gallery-3.jpg`, `gallery-4.jpg`
+**File: `src/components/EventDetailDialog.tsx`**
 
-Queste immagini non sono importate da nessun componente — rimuoverle non cambia nulla sul sito.
+- Aggiungere uno stato `showExpiredAlert` (boolean)
+- Sostituire tutti i 4 link `<a href="#">...Clicca qui per iscrivere la tua auto...</a>` con un `<button>` che:
+  - Per eventi con `status === "Passato"`: al click mostra un `AlertDialog` con messaggio "Questo evento è già passato, non è più possibile iscriversi"
+  - Per eventi con `status === "Prossimo"`: mantiene il comportamento link normale (per ora `href="#"`, pronto per un URL futuro)
+- Il controllo si basa sul campo `event.status` già presente nel data model
+- L'`AlertDialog` avrà un solo pulsante "Ho capito" per chiuderlo
 
-**2. Rimuovere import morto in `src/pages/Contact.tsx`**
-- Togliere `X` dalla riga di import di lucide-react (non è più usato dopo la modifica al dialog privacy)
-
-**Cosa NON tocchiamo:**
-- Nessun componente UI
-- Nessuna pagina
-- Nessuno stile CSS
-- Nessuna immagine attualmente visibile
-- Nessuna conversione di formato (la cover SUNSET DRIVE resta jpeg)
+**Nessuna modifica** a eventStore, pagine eventi, homepage o altri componenti.
 
