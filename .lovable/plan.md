@@ -1,19 +1,17 @@
 
 
-## Aggiornamento link WhatsApp Selective Club
+## Modifica immagine hero "Chi Siamo" — Fari accesi
 
-### Cosa cambia
-I due link WhatsApp nella sezione "Selective Club+" puntano attualmente al canale Fotografi. Verranno aggiornati al nuovo gruppo Selective.
+### Cosa faremo
+Useremo l'AI image editing per prendere l'immagine attuale (`about-hero-tahoe.jpg`) e generare una versione con i fari accesi, mantenendo tutto il resto identico.
 
-### Modifiche in `src/pages/Community.tsx`
+### Passaggi
 
-**Riga 203** — Link nel bottone hero Selective Club:
-- Da: `https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t`
-- A: `https://chat.whatsapp.com/DrGUr1QTIDb4luZIepP8aO?mode=gi_t`
+1. Copiare lo script AI gateway in `/tmp/`
+2. Usare il modello di editing immagini (`google/gemini-2.5-flash-image`) con il prompt "Turn on the car headlights, make them glow realistically with light beams" sull'immagine esistente `src/assets/about-hero-tahoe.jpg`
+3. Salvare il risultato come nuovo asset `src/assets/about-hero-tahoe-lights.jpg`
+4. Aggiornare l'import in `src/pages/About.tsx` per usare la nuova immagine
+5. QA visiva del risultato
 
-**Riga 257** — Link nella CTA finale Selective Club:
-- Da: `https://chat.whatsapp.com/H1Qxkmmksnz2Xc0c49Jzjn?mode=gi_t`
-- A: `https://chat.whatsapp.com/DrGUr1QTIDb4luZIepP8aO?mode=gi_t`
-
-I link della sezione "Fotografi" (righe 98 e 174) restano invariati.
+Nessuna modifica a layout, stili o funzionalità.
 
