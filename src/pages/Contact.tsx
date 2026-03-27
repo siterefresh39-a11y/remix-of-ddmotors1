@@ -105,6 +105,7 @@ const Contact = () => {
                 id="name"
                 type="text"
                 required
+                maxLength={100}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="w-full bg-transparent border border-border/50 px-5 py-4 text-foreground font-body text-base focus:outline-none focus:border-foreground transition-colors"
@@ -118,6 +119,7 @@ const Contact = () => {
                 id="email"
                 type="email"
                 required
+                maxLength={255}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full bg-transparent border border-border/50 px-5 py-4 text-foreground font-body text-base focus:outline-none focus:border-foreground transition-colors"
@@ -131,6 +133,7 @@ const Contact = () => {
                 id="message"
                 required
                 rows={5}
+                maxLength={2000}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full bg-transparent border border-border/50 px-5 py-4 text-foreground font-body text-base focus:outline-none focus:border-foreground transition-colors resize-none"
