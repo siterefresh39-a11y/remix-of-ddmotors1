@@ -21,7 +21,7 @@ const Privacy = () => {
         >
           <div>
             <h2 className="font-display text-lg tracking-widest uppercase text-foreground mb-3">Titolare del trattamento</h2>
-            <p>Devis degli Esposti — <a href="mailto:ddmotorsofficial@gmail.com" className="underline hover:text-foreground transition-colors">ddmotorsofficial@gmail.com</a></p>
+            <p>Davis degli Esposti — <a href="mailto:ddmotorsofficial@gmail.com" className="underline hover:text-foreground transition-colors">ddmotorsofficial@gmail.com</a></p>
           </div>
 
           <div>

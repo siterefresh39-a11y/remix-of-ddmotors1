@@ -229,7 +229,7 @@ const Contact = () => {
           <div className="space-y-6 font-body text-foreground/80 text-sm leading-relaxed mt-4">
             <div>
               <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Titolare del trattamento</h3>
-              <p>Devis degli Esposti — ddmotorsofficial@gmail.com</p>
+              <p>Davis degli Esposti — ddmotorsofficial@gmail.com</p>
             </div>
             <div>
               <h3 className="font-display text-sm tracking-widest uppercase text-foreground mb-2">Dati raccolti</h3>
