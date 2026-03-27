@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ExternalLink } from "lucide-react";
 import { loadEvents, type EventItem } from "@/lib/eventStore";
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
 
 interface EventDetailDialogProps {
   eventId: string | null;
@@ -9,6 +18,52 @@ interface EventDetailDialogProps {
 }
 
 const eventsData = loadEvents();
+
+const ctaClasses = "inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2";
+
+const SignUpButton = ({ event }: { event: EventItem }) => {
+  const [showAlert, setShowAlert] = useState(false);
+
+  if (event.status === "Passato") {
+    return (
+      <>
+        <button
+          type="button"
+          onClick={() => setShowAlert(true)}
+          className={ctaClasses}
+        >
+          Clicca qui per iscrivere la tua auto
+          <ExternalLink size={14} />
+        </button>
+        <AlertDialog open={showAlert} onOpenChange={setShowAlert}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Evento già passato</AlertDialogTitle>
+              <AlertDialogDescription>
+                Questo evento è già passato, non è più possibile iscriversi. Resta aggiornato per i prossimi eventi!
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setShowAlert(false)}>Ho capito</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </>
+    );
+  }
+
+  return (
+    <a
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={ctaClasses}
+    >
+      Clicca qui per iscrivere la tua auto
+      <ExternalLink size={14} />
+    </a>
+  );
+};
 
 const EventDetailDialog = React.forwardRef<HTMLDivElement, EventDetailDialogProps>(({ eventId, onClose }, ref) => {
   const event = eventId ? eventsData.find((e) => e.id === eventId) : null;
@@ -61,15 +116,7 @@ GRAZIE A @ruotequadrenerviano per la partecipazione
 
 GRAZIE AL @comune_trezzanosulnaviglio per aver accolto e patrocinato il nostro primo evento.`}
               </p>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
-              >
-                Clicca qui per iscrivere la tua auto
-                <ExternalLink size={14} />
-              </a>
+              <SignUpButton event={event} />
             </div>
           </>
         )}
@@ -100,15 +147,7 @@ Via Novara, 35 Bareggio (MI).`}
                 <p>@alberto_paiano per le foto e video</p>
                 <p>@street_custom_creew per la partecipazione e prima collaborazione</p>
               </div>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
-              >
-                Clicca qui per iscrivere la tua auto
-                <ExternalLink size={14} />
-              </a>
+              <SignUpButton event={event} />
             </div>
           </>
         )}
@@ -158,15 +197,7 @@ Partecipare significa vivere la guida su una delle strade più belle della zona,
 
 INFO E DETTAGLI SUL NOSTRO PROFILO`}
               </p>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
-              >
-                Clicca qui per iscrivere la tua auto
-                <ExternalLink size={14} />
-              </a>
+              <SignUpButton event={event} />
             </div>
           </>
         )}
@@ -193,15 +224,7 @@ Un evento a numero chiuso per garantire un'esperienza esclusiva e indimenticabil
 
 📲 Per info e iscrizioni scrivici in DM o prenota tramite il sito`}
               </p>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase border border-foreground/30 px-8 py-3 text-foreground hover:bg-foreground hover:text-background transition-all duration-300 mt-2"
-              >
-                Clicca qui per iscrivere la tua auto
-                <ExternalLink size={14} />
-              </a>
+              <SignUpButton event={event} />
             </div>
           </>
         )}
