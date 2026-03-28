@@ -26,7 +26,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename={import.meta.env.PROD ? "/remix-of-ddmotors1" : "/"}>
+        <BrowserRouter>
           <ScrollToTop />
           <BackToHome />
           <Routes>
